@@ -10,5 +10,11 @@
   },
   "data-import-export.qmd": {
     "data-import-export.html": "d51ca589"
+  },
+  "docs/Titanic_Data_ggplot2.ipynb": {
+    "Titanic_Data_ggplot2.html": "1254eaa9"
+  },
+  "Titanic_Data_ggplot2.ipynb": {
+    "Titanic_Data_ggplot2.html": "76d661c6"
   }
 }
