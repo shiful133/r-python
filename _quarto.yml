@@ -14,16 +14,23 @@ website:
     search: true
     collapse-level: 1
     contents:
-      - section: "Basics"
+      - section: "R in RStudio"
+        contents:
+          - text: "Introduction"
+            file: introduction.qmd
+          - text: "About Us"
+            file: about.qmd
+      - section: "R in Colab"
         contents:
           - index.qmd
           - basics-knitr.qmd
           - basics-jupyter.qmd
-      - section: "Layout"
+      - section: "Python in Colab"
         contents:
-          - layout.qmd
-          - layout-knitr.qmd
-          - layout-jupyter.qmd
+          - index.qmd
+          - basics-knitr.qmd
+          - basics-jupyter.qmd
+          
   page-footer:
     center: 
       - text: "© CC-By Md.Shiful Islam, Senior Scientific Officer, Soil Resource Development Institute, Bangladesh 2023</br> R Script Credit: Zia Ahmed, Unversity at Buffalo"
