@@ -1,0 +1,14 @@
+{
+  "hash": "fd47f8c86192446cee9830b83971abdd",
+  "result": {
+    "markdown": "---\ntitle: \"Data Import Export\"\n# author: \"Md. Shiful Islam\"\n---\n\n\nReading data for analysis and exporting the results to another system for report writing can be done efficiently with R. There are multiple ways to import and export data to/from R. In this tutorial, you will learn some most common ways to read and write data with R.\n\n# Working directory\n\nIt would be best if you created a working directory in R to read and write files locally.\n\nBefore creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.\n\n\n::: {.cell}\n\n```{.r .cell-code}\ngetwd()\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] \"D:/Github/r-python\"\n```\n:::\n:::\n\n\nThe following example shows how to create the working directory in R.\n\n## Working directory 1\n\nIt would be best if you created a working directory in R to read and write files locally.\n\nBefore creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

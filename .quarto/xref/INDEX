@@ -4,5 +4,11 @@
   },
   "about.qmd": {
     "about.html": "ee10ab0c"
+  },
+  "data-export-import.qmd": {
+    "data-export-import.html": "c368cc38"
+  },
+  "data-import-export.qmd": {
+    "data-import-export.html": "d51ca589"
   }
 }
