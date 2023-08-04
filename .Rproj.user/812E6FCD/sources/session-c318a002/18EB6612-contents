@@ -1,0 +1,211 @@
+---
+title: "Matplotlib Demo"
+author: "Norah Smith"
+---
+
+<a href="https://colab.research.google.com/github/shiful133/r-python/blob/main/docs/Titanic_Data_ggplot2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+```{python}
+#| id: is2Er-8ceqFU
+#| id: is2Er-8ceqFU
+!pip uninstall rpy2 -y
+!pip install rpy2==3.5.1
+%load_ext rpy2.ipython
+```
+
+```{python}
+#| id: wFJy5ZGNdKqK
+#| id: wFJy5ZGNdKqK
+#| colab: {base_uri: 'https://localhost:8080/'}
+#| outputId: 7d17f2fe-0573-45ce-93c7-2f572060f6bf
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+```{python}
+#| id: O_IlYJJx_Usx
+#| id: O_IlYJJx_Usx
+#| colab: {base_uri: 'https://localhost:8080/'}
+#| outputId: b9c094aa-332e-44c6-971f-bb4271daf3eb
+%%R
+#assign(".lib.loc", "drive/MyDrive/R/R_Packages/", envir = environment(.libPaths))
+assign(".lib.loc", c("drive/MyDrive/R/R_Packages/","/usr/lib/R/site-library","/usr/lib/R/library"), envir = environment(.libPaths))
+#assign(".lib.loc", c("drive/MyDrive/R/R_Packages/","/usr/local/lib/R/site-library","/usr/lib/R/site-library","/usr/lib/R/library"), envir = environment(.libPaths))
+
+.libPaths()
+```
+
+```{python}
+#| id: 0ELsCPJ6e8Eh
+#| colab: {base_uri: 'https://localhost:8080/'}
+#| id: 0ELsCPJ6e8Eh
+#| outputId: beb0ecd2-1b8a-49c5-dd52-707693706b9f
+%%R
+library(ggplot2)
+library(tidyverse)
+titanic <- read.csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
+head(titanic)
+```
+
+```{python}
+#| id: pvEb3zWsiwiC
+#| id: pvEb3zWsiwiC
+%%R
+#setup factors
+titanic$Pclass <- as.factor(titanic$Pclass)
+titanic$Survived <- as.factor(titanic$Survived)
+titanic$Sex <- as.factor(titanic$Sex)
+titanic$Embarked <- as.factor(titanic$Embarked)
+```
+
+```{python}
+#| id: 5mkyLkg0hsSf
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: 5mkyLkg0hsSf
+#| outputId: 85c6c140-9c0e-462a-96b9-e088585bb492
+%%R
+ggplot(titanic, aes(x = Survived))+
+geom_bar()
+```
+
+```{python}
+#| id: PDrZljxKk2k5
+#| colab: {base_uri: 'https://localhost:8080/'}
+#| outputId: 7ad6b972-c811-447d-b6d9-e58c7a60fad6
+#| id: PDrZljxKk2k5
+%%R
+ggplot(titanic, aes(x = Survived))+
+geom_bar()
+
+prop.table(table(titanic$Survived))
+```
+
+```{python}
+#| id: aKNZHq_Cluji
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| outputId: ca421c03-7eb8-4973-edfe-181e233adaf2
+#| id: aKNZHq_Cluji
+%%R
+ggplot(titanic, aes(x = Sex, fill=Survived))+
+  geom_bar()+
+  theme_bw()+
+  labs(y="Number",
+       title="Titanic Survival Rate",
+       )
+```
+
+```{python}
+#| id: vNEKGWbGnGf8
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: vNEKGWbGnGf8
+#| outputId: aec17ebf-4756-40c0-d2e7-2622b8d93b75
+%%R
+ggplot(titanic, aes(x = Pclass, fill=Survived))+
+  geom_bar()+
+  theme_bw()+
+  labs(y="Number",
+       title="Titanic Survival Rate",
+       )
+```
+
+```{python}
+#| id: JexS_AwPnx9P
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: JexS_AwPnx9P
+#| outputId: 26e1fc8d-37d2-400b-8f04-6e446beff389
+%%R
+ggplot(titanic, aes(x = Sex, fill=Survived))+
+  geom_bar()+
+  theme_bw()+
+  facet_wrap(~ Pclass)+
+  labs(y="Number",
+       title="Titanic Survival Rate",
+       )
+```
+
+```{python}
+#| id: pUAROPi8pHHy
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: pUAROPi8pHHy
+#| outputId: 4a9b7a11-cf6d-4bc7-c3a1-9b7b78a7d497
+%%R
+ggplot(titanic, aes(x = Age))+
+  geom_histogram(binwidth=5)+
+  theme_bw()+
+  labs(y="Number",
+       x = "Age (binwidth = 5)",
+       title="Titanic Age Distribution",
+       )
+```
+
+```{python}
+#| id: ifx_jShHqo_V
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: ifx_jShHqo_V
+#| outputId: b1431d91-3a7b-4592-8130-e157b92eeb4f
+%%R
+ggplot(titanic, aes(x = Age, fill=Survived))+
+  geom_histogram(binwidth=5)+
+  theme_bw()+
+  labs(y="Number",
+       x = "Age (binwidth = 5)",
+       title="Titanic Age Distribution",
+       )
+```
+
+```{python}
+#| id: jVshVcNdrCp1
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: jVshVcNdrCp1
+#| outputId: b7a90a37-ff84-418e-d72d-32e6f5cd1185
+%%R
+ggplot(titanic, aes(x = Survived, y=Age))+
+  geom_boxplot()+
+  theme_bw()+
+  labs(y="Age",
+       x = "Survived",
+       title="Titanic Age Distribution",
+       )
+```
+
+```{python}
+#| id: 7hAAfYeqsgU5
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: 7hAAfYeqsgU5
+#| outputId: 7cee25cc-cc10-410e-9e41-e266817e25cd
+%%R
+ggplot(titanic, aes(x = Age, fill=Survived))+
+  geom_density(alpha=.5)+
+  theme_bw()+
+  facet_wrap(Sex~Pclass)+
+  labs(y="Number",
+       x = "Age",
+       title="Titanic Survival Rate by Age, Pclass, Sex"
+       )
+```
+
+```{python}
+#| id: WAyC_6jfvggy
+#| colab: {base_uri: 'https://localhost:8080/', height: 497}
+#| id: WAyC_6jfvggy
+#| outputId: c70917dd-56a5-4c98-faba-a1f8146ec04e
+%%R
+ggplot(titanic, aes(x = Age, fill=Survived))+
+  geom_histogram(alpha=.5,binwidth=5)+
+  theme_bw()+
+  facet_wrap(Sex~Pclass)+
+  labs(y="Number",
+       x = "Age",
+       title="Titanic Survival Rate by Age, Pclass, Sex"
+       )
+```
+
+```{python}
+#| id: XMjdK6_smdcT
+#| id: XMjdK6_smdcT
+%%R
+#install.packages("rgee", lib='drive/MyDrive/R/R_Packages/')
+library(rgee)
+library(sf)
+library(raster)
+```
