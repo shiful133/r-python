@@ -1,0 +1,4 @@
+- source: project
+  quarto-pub:
+    - id: bfe33be5-2d48-4a13-8214-7a99c906f83b
+      url: 'https://quartopub.com/sites/shiful133/r-python'
