@@ -23,8 +23,8 @@ website:
       - section: "R in Colab"
         contents:
           - index.qmd
-          - text: "ggplot2"
-            file: "/docs/Titanic_Data_ggplot2.html"
+          - text: "Titanic"
+            href: Titanic_Data_ggplot2.html
           - basics-jupyter.qmd
       - section: "Python in Colab"
         contents:
