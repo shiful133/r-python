@@ -210,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Titanic_Data_ggplot2.html" class="sidebar-item-text sidebar-link">Titanic</a>
+  <a href="./R_Titanic_Data_ggplot2.html" class="sidebar-item-text sidebar-link">Titanic</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -244,16 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#working-directory" id="toc-working-directory" class="nav-link active" data-scroll-target="#working-directory">Working directory</a>
-  <ul class="collapse">
-  <li><a href="#working-directory-1" id="toc-working-directory-1" class="nav-link" data-scroll-target="#working-directory-1">Working directory 1</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -275,26 +266,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Data</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Reading data for analysis and exporting the results to another system for report writing can be done efficiently with R. There are multiple ways to import and export data to/from R. In this tutorial, you will learn some most common ways to read and write data with R.</p>
-<section id="working-directory" class="level1">
-<h1>Working directory</h1>
+<section id="working-directory" class="level2">
+<h2 class="anchored" data-anchor-id="working-directory">Working directory</h2>
 <p>It would be best if you created a working directory in R to read and write files locally.</p>
 <p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "D:/Github/r-python"</code></pre>
 </div>
 </div>
 <p>The following example shows how to create the working directory in R.</p>
+</section>
 <section id="working-directory-1" class="level2">
 <h2 class="anchored" data-anchor-id="working-directory-1">Working directory 1</h2>
 <p>It would be best if you created a working directory in R to read and write files locally.</p>
 <p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
+</section>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<section id="working-directory-1-1" class="level2">
+<h2 class="anchored" data-anchor-id="working-directory-1-1">Working directory 1</h2>
+<p>It would be best if you created a working directory in R to read and write files locally.</p>
+<p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
+</section>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

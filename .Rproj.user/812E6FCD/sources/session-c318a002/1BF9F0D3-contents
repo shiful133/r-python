@@ -24,7 +24,7 @@ website:
         contents:
           - index.qmd
           - text: "Titanic"
-            href: Titanic_Data_ggplot2.html
+            href: R_Titanic_Data_ggplot2.html
           - basics-jupyter.qmd
       - section: "Python in Colab"
         contents:
@@ -40,6 +40,7 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
+    code-fold: true
 
 editor: visual
 
