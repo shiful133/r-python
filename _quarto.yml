@@ -10,27 +10,22 @@ website:
         text: Home
       - about.qmd
   sidebar:
-    style: "docked"
+    style: docked
     search: true
+    background: "#D4E9E0"
     collapse-level: 1
     contents:
-      - section: "R in RStudio"
-        contents:
-          - text: "Introduction"
-            file: introduction.qmd
-          - text: "About Us"
-            file: about.qmd
-      - section: "R in Colab"
-        contents:
-          - index.qmd
-          - text: "Titanic"
-            href: R_Titanic_Data_ggplot2.html
-          - basics-jupyter.qmd
-      - section: "Python in Colab"
-        contents:
-          - index.qmd
-          - basics-knitr.qmd
-          - basics-jupyter.qmd
+        - section: "<b>MENU</b>"
+          contents: 
+        - section: "R in RStudio"
+        - section: "R in Colab"
+          contents:
+            - text: "ggplot2"
+              href: R_Titanic_Data_ggplot2.html
+        - section: "Python in Colab"
+          contents:
+            - text: "Data Import-Export"
+              href: python-data-import-export.qmd
           
   page-footer:
     center: 
@@ -41,6 +36,10 @@ format:
     css: styles.css
     toc: true
     code-fold: true
+    highlight-style: atom-one
+    code-block-bg: "#DBDBDB"
+    code-block-border-left: "#5A5A5A"
+    backgroundcolor: "#F4E0DF"
 
 editor: visual
 

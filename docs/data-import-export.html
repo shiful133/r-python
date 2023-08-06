@@ -137,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Data Import-Export in Python:</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Data Import-Export in Python</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -192,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Geospatial Analysis in R and Python</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -217,8 +217,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction to Geospatial Analysis in R and Python</span></a>
+  <a href="./python-data-import-export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import-Export</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -239,15 +239,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#plot" id="toc-plot" class="nav-link active" data-scroll-target="#plot">Plot</a>
-  <ul class="collapse">
-  <li><a href="#working-directory" id="toc-working-directory" class="nav-link" data-scroll-target="#working-directory">Working directory</a></li>
-  <li><a href="#working-directory-1" id="toc-working-directory-1" class="nav-link" data-scroll-target="#working-directory-1">Working directory 1</a></li>
-  </ul></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a>
-  <ul class="collapse">
+  <li><a href="#plot" id="toc-plot" class="nav-link active" data-scroll-target="#plot">Plot</a></li>
+  <li><a href="#working-directory-1" id="toc-working-directory-1" class="nav-link" data-scroll-target="#working-directory-1">Working directory</a></li>
   <li><a href="#working-directory-1-1" id="toc-working-directory-1-1" class="nav-link" data-scroll-target="#working-directory-1-1">Working directory 1</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -256,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Import-Export in Python:</h1>
+<h1 class="title">Data Import-Export in Python</h1>
 </div>
 
 
@@ -271,53 +265,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="plot" class="level1">
-<h1>Plot</h1>
-<p>Reading data for analysis and exporting the results to another system for report writing can be done efficiently with R. There are multiple ways to import and export data to/from R. In this tutorial, you will learn some most common ways to read and write data with R.</p>
-<section id="working-directory" class="level2">
-<h2 class="anchored" data-anchor-id="working-directory">Working directory</h2>
-<p>It would be best if you created a working directory in R to read and write files locally.</p>
-<p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "E:/Github/r-python"</code></pre>
-</div>
-</div>
-<p>The following example shows how to create the working directory in R.</p>
-</section>
-<section id="working-directory-1" class="level2">
-<h2 class="anchored" data-anchor-id="working-directory-1">Working directory 1</h2>
-<p>It would be best if you created a working directory in R to read and write files locally.</p>
-<p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
-</section>
-</section>
-<section id="data" class="level1">
-<h1>Data</h1>
-<section id="working-directory-1-1" class="level2">
-<h2 class="anchored" data-anchor-id="working-directory-1-1">Working directory 1</h2>
-<p>It would be best if you created a working directory in R to read and write files locally.</p>
-<p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
-<div id="ipynb">
-<div class="quarto-embed-nb-cell" data-notebook="Python_Data_Import_Export.ipynb" data-notebook-title="Data Import-Export in Python:">
+<div class="quarto-embed-nb-cell" data-notebook="Python_Data_Import_Export.ipynb" data-notebook-title="Data Import-Export in Python">
 <p><a href="https://colab.research.google.com/github/shiful133/r-python/blob/main/Python_Data_Import_Export.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
 <p>Importing and exporting data in Google Colab, which is a popular platform for working with Python notebooks, involves using various libraries and methods to handle different file formats. Here’s a brief guide on how to perform data import and export in Python Colab:</p>
-<section id="working-directory-2" class="level2">
-<h2 class="anchored" data-anchor-id="working-directory-2">Working Directory</h2>
+<section id="working-directory" class="level2">
+<h2 class="anchored" data-anchor-id="working-directory">Working Directory</h2>
 <p>In Google Colab, the working directory is set to the root directory by default. This root directory contains the Colab notebooks, and you can access files from your Google Drive as well. However, if you want to navigate and work within a specific directory, you can use the %cd magic command to change the current directory. Here’s how you can get and change the working directory in Google Colab:</p>
 <section id="get-current-working-directory" class="level3">
 <h3 class="anchored" data-anchor-id="get-current-working-directory">Get Current Working Directory:</h3>
-<div class="cell" data-outputid="377856ef-1163-4d65-e777-803992cda780">
+<div class="cell" data-outputid="308dcde3-02f3-44bf-953e-a7dd0d65c773" data-execution_count="4">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current working directory</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>current_directory <span class="op">=</span> os.getcwd()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Current Directory:"</span>, current_directory)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get current working directory</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>current_directory <span class="op">=</span> os.getcwd()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Current Directory:"</span>, current_directory)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Current Directory: /content</code></pre>
@@ -327,24 +290,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mounting-google-drive" class="level3">
 <h3 class="anchored" data-anchor-id="mounting-google-drive">Mounting Google Drive:</h3>
 <p>If you want to access files from your Google Drive or change working directory to a folder in Google Drive, you’ll need to mount your Google Drive using the drive.mount() function.</p>
-<div class="cell" data-outputid="7a9a828c-2eb6-4096-87d5-1f2d417c50f3">
+<div class="cell" data-outputid="40ba70e8-e7c4-41fd-d24f-5983a8bb1be0" data-execution_count="27">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">'/content/drive'</span>)  <span class="co"># Mount Google Drive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">'/content/drive'</span>)  <span class="co"># Mount Google Drive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Mounted at /content/drive</code></pre>
+<pre><code>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).</code></pre>
 </div>
 </div>
-<p>###Change Working Directory:</p>
-<div class="cell" data-outputid="d67d082a-f10b-4ebc-f24c-fc997ab44787">
+</section>
+<section id="change-working-directory" class="level3">
+<h3 class="anchored" data-anchor-id="change-working-directory">Change Working Directory:</h3>
+<div class="cell" data-outputid="809b67dd-86e2-4ead-b1c4-b856a8674f32" data-execution_count="6">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change working directory</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>new_directory <span class="op">=</span> <span class="st">'/content/drive/MyDrive/Python'</span>  <span class="co"># Replace with your desired directory path</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd <span class="st">"$new_directory"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change working directory</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>new_directory <span class="op">=</span> <span class="st">'/content/drive/MyDrive/Python'</span>  <span class="co"># Replace with your desired directory path</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>cd <span class="st">"$new_directory"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>/content/drive/MyDrive/Python</code></pre>
@@ -353,38 +318,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="check-files-in-the-directory" class="level3">
 <h3 class="anchored" data-anchor-id="check-files-in-the-directory">Check Files in the Directory:</h3>
-<div class="cell">
+<div class="cell" data-outputid="f7bf6197-61b5-45f3-a6b4-777164724d13" data-execution_count="28">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check files in any directory</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>os.listdir(<span class="st">'/content/drive/MyDrive/Python'</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or just os.listdir() for current working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check files in any directory</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>os.listdir(<span class="st">'/content/drive/MyDrive/Python'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># or just os.listdir() for current working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>['Untitled folder',
+ 'raj_soil_data.csv',
+ 'bd_arsenic_data.csv',
+ 'bd_district.csv',
+ 'rice_data.csv',
+ 'green_house.csv']</code></pre>
 </div>
-<p>##Read/Import Data into Python:</p>
+</div>
 </section>
+</section>
+<section id="readimport-data-into-python" class="level2">
+<h2 class="anchored" data-anchor-id="readimport-data-into-python">Read/Import Data into Python:</h2>
 <section id="reading-csv-files" class="level3">
 <h3 class="anchored" data-anchor-id="reading-csv-files">Reading CSV Files:</h3>
 <p>You can use the <code>pandas</code> library to read CSV files in Colab. If the file is hosted online, you can directly provide the URL. If the file is uploaded to Colab, you can use the file upload widget.</p>
-<div class="cell">
+<div class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="read-from-google-drive" class="level4">
 <h4 class="anchored" data-anchor-id="read-from-google-drive">Read from Google Drive:</h4>
-<div class="cell" data-outputid="614cff2a-3849-4997-86f8-19383dcce823">
+<div class="cell" data-outputid="6232aea9-ab44-441f-91ec-6f37d377170b" data-execution_count="9">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data_folder_drive <span class="op">=</span> <span class="st">"/content/drive/MyDrive/data/"</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>test_data_csv <span class="op">=</span> pd.read_csv(data_folder_drive <span class="op">+</span> <span class="st">"test_data.csv"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>test_data_csv.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_folder_drive <span class="op">=</span> <span class="st">"/content/drive/MyDrive/data/"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>test_data_csv <span class="op">=</span> pd.read_csv(data_folder_drive <span class="op">+</span> <span class="st">"test_data.csv"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>test_data_csv.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 
-  <div id="df-8931e51e-a51d-4937-8fb4-27d921d03005">
+  <div id="df-cf103b57-6295-4ec0-9eb6-69d856240f12">
     <div class="colab-df-container">
       <div>
 
@@ -494,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-8931e51e-a51d-4937-8fb4-27d921d03005')" title="Convert this dataframe to an interactive table." style="display:none;">
+      <button class="colab-df-convert" onclick="convertToInteractive('df-cf103b57-6295-4ec0-9eb6-69d856240f12')" title="Convert this dataframe to an interactive table." style="display:none;">
 
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -504,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-    <div id="df-a74faa04-af7e-43e5-a6b9-cb70d1697be7">
-      <button class="colab-df-quickchart" onclick="quickchart('df-a74faa04-af7e-43e5-a6b9-cb70d1697be7')" title="Suggest charts." style="display:none;">
+    <div id="df-367d2d77-370c-470b-8434-b5f68fef31f4">
+      <button class="colab-df-quickchart" onclick="quickchart('df-367d2d77-370c-470b-8434-b5f68fef31f4')" title="Suggest charts." style="display:none;">
 
 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <g>
@@ -559,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 function displayQuickchartButton(domScope) {
   let quickchartButtonEl =
-    domScope.querySelector('#df-a74faa04-af7e-43e5-a6b9-cb70d1697be7 button.colab-df-quickchart');
+    domScope.querySelector('#df-367d2d77-370c-470b-8434-b5f68fef31f4 button.colab-df-quickchart');
   quickchartButtonEl.style.display =
     google.colab.kernel.accessAllowed ? 'block' : 'none';
 }
@@ -606,12 +581,12 @@ function displayQuickchartButton(domScope) {
 
       <script>
         const buttonEl =
-          document.querySelector('#df-8931e51e-a51d-4937-8fb4-27d921d03005 button.colab-df-convert');
+          document.querySelector('#df-cf103b57-6295-4ec0-9eb6-69d856240f12 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-8931e51e-a51d-4937-8fb4-27d921d03005');
+          const element = document.querySelector('#df-cf103b57-6295-4ec0-9eb6-69d856240f12');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -635,18 +610,18 @@ function displayQuickchartButton(domScope) {
 </section>
 <section id="read-from-url" class="level4">
 <h4 class="anchored" data-anchor-id="read-from-url">Read from URL:</h4>
-<div class="cell" data-outputid="8c23c106-65fa-427f-f454-8c43bff98365">
+<div class="cell" data-outputid="99195f01-ab6e-4396-dfeb-d1e8fcc814b3" data-execution_count="10">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_folder <span class="op">=</span> <span class="st">"https://github.com/shiful133/data/raw/main/soil_data/"</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>test_data_csv <span class="op">=</span> pd.read_csv(data_folder <span class="op">+</span> <span class="st">"test_data.csv"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>test_data_csv.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data_folder <span class="op">=</span> <span class="st">"https://github.com/shiful133/data/raw/main/soil_data/"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>test_data_csv <span class="op">=</span> pd.read_csv(data_folder <span class="op">+</span> <span class="st">"test_data.csv"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>test_data_csv.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="10">
 
 
-  <div id="df-2e421a80-e40b-4b23-ae66-104c66dbc939">
+  <div id="df-37dc62c7-19c5-4e42-bf88-d9c0e9499271">
     <div class="colab-df-container">
       <div>
 
@@ -756,7 +731,7 @@ function displayQuickchartButton(domScope) {
 
 
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-2e421a80-e40b-4b23-ae66-104c66dbc939')" title="Convert this dataframe to an interactive table." style="display:none;">
+      <button class="colab-df-convert" onclick="convertToInteractive('df-37dc62c7-19c5-4e42-bf88-d9c0e9499271')" title="Convert this dataframe to an interactive table." style="display:none;">
 
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -766,8 +741,8 @@ function displayQuickchartButton(domScope) {
 
 
 
-    <div id="df-e8191f85-3970-4a4e-95fc-5d4038729f1c">
-      <button class="colab-df-quickchart" onclick="quickchart('df-e8191f85-3970-4a4e-95fc-5d4038729f1c')" title="Suggest charts." style="display:none;">
+    <div id="df-f6052ab1-7457-432e-a6c5-9ab794a70cf2">
+      <button class="colab-df-quickchart" onclick="quickchart('df-f6052ab1-7457-432e-a6c5-9ab794a70cf2')" title="Suggest charts." style="display:none;">
 
 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <g>
@@ -821,7 +796,7 @@ function displayQuickchartButton(domScope) {
 
 function displayQuickchartButton(domScope) {
   let quickchartButtonEl =
-    domScope.querySelector('#df-e8191f85-3970-4a4e-95fc-5d4038729f1c button.colab-df-quickchart');
+    domScope.querySelector('#df-f6052ab1-7457-432e-a6c5-9ab794a70cf2 button.colab-df-quickchart');
   quickchartButtonEl.style.display =
     google.colab.kernel.accessAllowed ? 'block' : 'none';
 }
@@ -868,12 +843,12 @@ function displayQuickchartButton(domScope) {
 
       <script>
         const buttonEl =
-          document.querySelector('#df-2e421a80-e40b-4b23-ae66-104c66dbc939 button.colab-df-convert');
+          document.querySelector('#df-37dc62c7-19c5-4e42-bf88-d9c0e9499271 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-2e421a80-e40b-4b23-ae66-104c66dbc939');
+          const element = document.querySelector('#df-37dc62c7-19c5-4e42-bf88-d9c0e9499271');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -899,30 +874,30 @@ function displayQuickchartButton(domScope) {
 <section id="reading-xlsx-files" class="level3">
 <h3 class="anchored" data-anchor-id="reading-xlsx-files">Reading XLSX Files:</h3>
 <p>You can also use the pandas library to read XLSX files.</p>
-<div class="cell" data-outputid="20765c02-7180-4dfc-fe97-7c4e81c04fd1">
+<div class="cell" data-outputid="18ae9458-8faa-436e-a5d9-fdd9eddfab78" data-execution_count="11">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>test_data_xlsx <span class="op">=</span> pd.read_excel(data_folder <span class="op">+</span> <span class="st">"test_data.xlsx"</span>) <span class="co"># data_folder variable defined in previous code block</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Get Column names of dataframe</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> test_data_xlsx.columns.tolist()</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(column_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>test_data_xlsx <span class="op">=</span> pd.read_excel(data_folder <span class="op">+</span> <span class="st">"test_data.xlsx"</span>) <span class="co"># data_folder variable defined in previous code block</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Get Column names of dataframe</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> test_data_xlsx.columns.tolist()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(column_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>['ID', 'treat', 'var', 'rep', 'PH', 'TN', 'PN', 'GW', 'ster', 'DTM', 'SW', 'GAs', 'STAs']</code></pre>
 </div>
 </div>
 <p>###Reading .txt Files: You can use pandas to read TXT files. Reading tab separated, or comma separated txt file is very similar to reading CSV files. Since tab-separated values are essentially a form of delimited text, you can use the read_csv() function of pandas and specify the delimiter as a tab character.</p>
-<div class="cell" data-outputid="50ced326-91f6-453e-defa-25434e5f0bd2">
+<div class="cell" data-outputid="03d83d9e-0fb1-4aaf-9ba0-c962704fef5b" data-execution_count="12">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>test_data_txt <span class="op">=</span> pd.read_csv(data_folder <span class="op">+</span> <span class="st">"test_data.txt"</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>) <span class="co"># data_folder variable defined in previous code block</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first 5 rows for quick view with .head()</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>test_data_txt.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>test_data_txt <span class="op">=</span> pd.read_csv(data_folder <span class="op">+</span> <span class="st">"test_data.txt"</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>) <span class="co"># data_folder variable defined in previous code block</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first 5 rows for quick view with .head()</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>test_data_txt.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="12">
 
 
-  <div id="df-4acc1dbe-8c44-43d4-82cd-aed4d94db2ee">
+  <div id="df-9c57c8c9-70fe-44f6-adf3-9e7488576ca8">
     <div class="colab-df-container">
       <div>
 
@@ -1032,7 +1007,7 @@ function displayQuickchartButton(domScope) {
 
 
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-4acc1dbe-8c44-43d4-82cd-aed4d94db2ee')" title="Convert this dataframe to an interactive table." style="display:none;">
+      <button class="colab-df-convert" onclick="convertToInteractive('df-9c57c8c9-70fe-44f6-adf3-9e7488576ca8')" title="Convert this dataframe to an interactive table." style="display:none;">
 
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -1042,8 +1017,8 @@ function displayQuickchartButton(domScope) {
 
 
 
-    <div id="df-be95c08b-b3cc-45a2-badc-3efd42763cca">
-      <button class="colab-df-quickchart" onclick="quickchart('df-be95c08b-b3cc-45a2-badc-3efd42763cca')" title="Suggest charts." style="display:none;">
+    <div id="df-6fc379f5-42d8-4aa5-80f1-7aa1361feb54">
+      <button class="colab-df-quickchart" onclick="quickchart('df-6fc379f5-42d8-4aa5-80f1-7aa1361feb54')" title="Suggest charts." style="display:none;">
 
 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
     <g>
@@ -1097,7 +1072,7 @@ function displayQuickchartButton(domScope) {
 
 function displayQuickchartButton(domScope) {
   let quickchartButtonEl =
-    domScope.querySelector('#df-be95c08b-b3cc-45a2-badc-3efd42763cca button.colab-df-quickchart');
+    domScope.querySelector('#df-6fc379f5-42d8-4aa5-80f1-7aa1361feb54 button.colab-df-quickchart');
   quickchartButtonEl.style.display =
     google.colab.kernel.accessAllowed ? 'block' : 'none';
 }
@@ -1144,12 +1119,12 @@ function displayQuickchartButton(domScope) {
 
       <script>
         const buttonEl =
-          document.querySelector('#df-4acc1dbe-8c44-43d4-82cd-aed4d94db2ee button.colab-df-convert');
+          document.querySelector('#df-9c57c8c9-70fe-44f6-adf3-9e7488576ca8 button.colab-df-convert');
         buttonEl.style.display =
           google.colab.kernel.accessAllowed ? 'block' : 'none';
 
         async function convertToInteractive(key) {
-          const element = document.querySelector('#df-4acc1dbe-8c44-43d4-82cd-aed4d94db2ee');
+          const element = document.querySelector('#df-9c57c8c9-70fe-44f6-adf3-9e7488576ca8');
           const dataTable =
             await google.colab.kernel.invokeFunction('convertToInteractive',
                                                      [key], {});
@@ -1170,25 +1145,466 @@ function displayQuickchartButton(domScope) {
   </div>
 </div>
 </div>
-<p>###Reading files via upload:</p>
-<div class="cell">
+</section>
+<section id="reading-files-by-uploading" class="level3">
+<h3 class="anchored" data-anchor-id="reading-files-by-uploading">Reading files by uploading:</h3>
+<div class="cell" data-outputid="c53c5203-c6ad-40dc-f59c-6f32d8e588eb" data-execution_count="15">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading CSV from uploaded file</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>uploaded <span class="op">=</span> files.upload()  <span class="co"># Upload the CSV file using the file upload widget</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>df_uploaded_csv <span class="op">=</span> pd.read_csv(<span class="bu">next</span>(<span class="bu">iter</span>(uploaded)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading CSV from uploaded file</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> files</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>uploaded <span class="op">=</span> files.upload()  <span class="co"># Upload the CSV file using the file upload widget</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>df_uploaded_csv <span class="op">=</span> pd.read_csv(<span class="bu">next</span>(<span class="bu">iter</span>(uploaded)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display">
+
+     <input type="file" id="files-8c54d4c1-ef46-489f-a03d-f1286f34c682" name="files[]" multiple="" disabled="" style="border:none">
+     <output id="result-8c54d4c1-ef46-489f-a03d-f1286f34c682">
+      Upload widget is only available when the cell has been executed in the
+      current browser session. Please rerun this cell to enable.
+      </output>
+      <script>// Copyright 2017 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @fileoverview Helpers for google.colab Python module.
+ */
+(function(scope) {
+function span(text, styleAttributes = {}) {
+  const element = document.createElement('span');
+  element.textContent = text;
+  for (const key of Object.keys(styleAttributes)) {
+    element.style[key] = styleAttributes[key];
+  }
+  return element;
+}
+
+// Max number of bytes which will be uploaded at a time.
+const MAX_PAYLOAD_SIZE = 100 * 1024;
+
+function _uploadFiles(inputId, outputId) {
+  const steps = uploadFilesStep(inputId, outputId);
+  const outputElement = document.getElementById(outputId);
+  // Cache steps on the outputElement to make it available for the next call
+  // to uploadFilesContinue from Python.
+  outputElement.steps = steps;
+
+  return _uploadFilesContinue(outputId);
+}
+
+// This is roughly an async generator (not supported in the browser yet),
+// where there are multiple asynchronous steps and the Python side is going
+// to poll for completion of each step.
+// This uses a Promise to block the python side on completion of each step,
+// then passes the result of the previous step as the input to the next step.
+function _uploadFilesContinue(outputId) {
+  const outputElement = document.getElementById(outputId);
+  const steps = outputElement.steps;
+
+  const next = steps.next(outputElement.lastPromiseValue);
+  return Promise.resolve(next.value.promise).then((value) => {
+    // Cache the last promise value to make it available to the next
+    // step of the generator.
+    outputElement.lastPromiseValue = value;
+    return next.value.response;
+  });
+}
+
+/**
+ * Generator function which is called between each async step of the upload
+ * process.
+ * @param {string} inputId Element ID of the input file picker element.
+ * @param {string} outputId Element ID of the output display.
+ * @return {!Iterable<!Object>} Iterable of next steps.
+ */
+function* uploadFilesStep(inputId, outputId) {
+  const inputElement = document.getElementById(inputId);
+  inputElement.disabled = false;
+
+  const outputElement = document.getElementById(outputId);
+  outputElement.innerHTML = '';
+
+  const pickedPromise = new Promise((resolve) => {
+    inputElement.addEventListener('change', (e) => {
+      resolve(e.target.files);
+    });
+  });
+
+  const cancel = document.createElement('button');
+  inputElement.parentElement.appendChild(cancel);
+  cancel.textContent = 'Cancel upload';
+  const cancelPromise = new Promise((resolve) => {
+    cancel.onclick = () => {
+      resolve(null);
+    };
+  });
+
+  // Wait for the user to pick the files.
+  const files = yield {
+    promise: Promise.race([pickedPromise, cancelPromise]),
+    response: {
+      action: 'starting',
+    }
+  };
+
+  cancel.remove();
+
+  // Disable the input element since further picks are not allowed.
+  inputElement.disabled = true;
+
+  if (!files) {
+    return {
+      response: {
+        action: 'complete',
+      }
+    };
+  }
+
+  for (const file of files) {
+    const li = document.createElement('li');
+    li.append(span(file.name, {fontWeight: 'bold'}));
+    li.append(span(
+        `(${file.type || 'n/a'}) - ${file.size} bytes, ` +
+        `last modified: ${
+            file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() :
+                                    'n/a'} - `));
+    const percent = span('0% done');
+    li.appendChild(percent);
+
+    outputElement.appendChild(li);
+
+    const fileDataPromise = new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        resolve(e.target.result);
+      };
+      reader.readAsArrayBuffer(file);
+    });
+    // Wait for the data to be ready.
+    let fileData = yield {
+      promise: fileDataPromise,
+      response: {
+        action: 'continue',
+      }
+    };
+
+    // Use a chunked sending to avoid message size limits. See b/62115660.
+    let position = 0;
+    do {
+      const length = Math.min(fileData.byteLength - position, MAX_PAYLOAD_SIZE);
+      const chunk = new Uint8Array(fileData, position, length);
+      position += length;
+
+      const base64 = btoa(String.fromCharCode.apply(null, chunk));
+      yield {
+        response: {
+          action: 'append',
+          file: file.name,
+          data: base64,
+        },
+      };
+
+      let percentDone = fileData.byteLength === 0 ?
+          100 :
+          Math.round((position / fileData.byteLength) * 100);
+      percent.textContent = `${percentDone}% done`;
+
+    } while (position < fileData.byteLength);
+  }
+
+  // All done.
+  yield {
+    response: {
+      action: 'complete',
+    }
+  };
+}
+
+scope.google = scope.google || {};
+scope.google.colab = scope.google.colab || {};
+scope.google.colab._files = {
+  _uploadFiles,
+  _uploadFilesContinue,
+};
+})(self);
+</script> 
 </div>
-<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Saving green_house.csv to green_house.csv</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="040ef81b-7e89-407b-94b3-06530df58ee1" data-execution_count="16">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now you can work with df_uploaded_csv</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_uploaded_csv.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+
+  <div id="df-f2295d12-f087-4581-9562-ba1b27dc51f2">
+    <div class="colab-df-container">
+      <div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">Treatment</th>
+<th data-quarto-table-cell-role="th">Variety</th>
+<th data-quarto-table-cell-role="th">REP</th>
+<th data-quarto-table-cell-role="th">PH</th>
+<th data-quarto-table-cell-role="th">TN</th>
+<th data-quarto-table-cell-role="th">PN</th>
+<th data-quarto-table-cell-role="th">GW</th>
+<th data-quarto-table-cell-role="th">ster</th>
+<th data-quarto-table-cell-role="th">DTM</th>
+<th data-quarto-table-cell-role="th">SW</th>
+<th data-quarto-table-cell-role="th">GAs</th>
+<th data-quarto-table-cell-role="th">STAs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>Low As</td>
+<td>BR01</td>
+<td>1</td>
+<td>84.0</td>
+<td>28.3</td>
+<td>27.7</td>
+<td>35.7</td>
+<td>20.5</td>
+<td>126.0</td>
+<td>28.4</td>
+<td>0.762</td>
+<td>14.60</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>Low As</td>
+<td>BR01</td>
+<td>2</td>
+<td>111.7</td>
+<td>34.0</td>
+<td>30.0</td>
+<td>58.1</td>
+<td>14.8</td>
+<td>119.0</td>
+<td>36.7</td>
+<td>0.722</td>
+<td>10.77</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>Low As</td>
+<td>BR01</td>
+<td>3</td>
+<td>102.3</td>
+<td>27.7</td>
+<td>24.0</td>
+<td>44.6</td>
+<td>5.8</td>
+<td>119.7</td>
+<td>32.9</td>
+<td>0.858</td>
+<td>12.69</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>Low As</td>
+<td>BR06</td>
+<td>1</td>
+<td>118.0</td>
+<td>23.3</td>
+<td>19.7</td>
+<td>46.4</td>
+<td>20.3</td>
+<td>119.0</td>
+<td>40.0</td>
+<td>1.053</td>
+<td>18.23</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5</td>
+<td>Low As</td>
+<td>BR06</td>
+<td>2</td>
+<td>115.3</td>
+<td>16.7</td>
+<td>12.3</td>
+<td>19.9</td>
+<td>32.3</td>
+<td>120.0</td>
+<td>28.2</td>
+<td>1.130</td>
+<td>13.72</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
-<div class="cell" data-outputid="d29a34a8-28ac-4708-83bf-c8148990df5a">
+      <button class="colab-df-convert" onclick="convertToInteractive('df-f2295d12-f087-4581-9562-ba1b27dc51f2')" title="Convert this dataframe to an interactive table." style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"></path><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"></path>
+  </svg>
+      </button>
+
+
+
+    <div id="df-ee5d1ebd-0c84-4d39-a0ba-e87be411a4f0">
+      <button class="colab-df-quickchart" onclick="quickchart('df-ee5d1ebd-0c84-4d39-a0ba-e87be411a4f0')" title="Suggest charts." style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewbox="0 0 24 24" width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"></path>
+    </g>
+</svg>
+      </button>
+    </div>
+
+<style>
+  .colab-df-quickchart {
+    background-color: #E8F0FE;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: #1967D2;
+    height: 32px;
+    padding: 0 0 0 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: #E2EBFA;
+    box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: #174EA6;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+    background-color: #3B4455;
+    fill: #D2E3FC;
+  }
+
+  [theme=dark] .colab-df-quickchart:hover {
+    background-color: #434B5C;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+    fill: #FFFFFF;
+  }
+</style>
+
+    <script>
+      async function quickchart(key) {
+        const containerElement = document.querySelector('#' + key);
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      }
+    </script>
+
+      <script>
+
+function displayQuickchartButton(domScope) {
+  let quickchartButtonEl =
+    domScope.querySelector('#df-ee5d1ebd-0c84-4d39-a0ba-e87be411a4f0 button.colab-df-quickchart');
+  quickchartButtonEl.style.display =
+    google.colab.kernel.accessAllowed ? 'block' : 'none';
+}
+
+        displayQuickchartButton(document);
+      </script>
+      <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-f2295d12-f087-4581-9562-ba1b27dc51f2 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-f2295d12-f087-4581-9562-ba1b27dc51f2');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div>
+</div>
+<section id="show-column-names" class="level4">
+<h4 class="anchored" data-anchor-id="show-column-names">Show column names</h4>
+<div class="cell" data-outputid="02b73a84-9077-4cde-8cbf-923cb83537ee" data-execution_count="17">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> test_data_csv.columns.tolist()</span>
@@ -1200,10 +1616,11 @@ function displayQuickchartButton(domScope) {
 </div>
 </div>
 </section>
+</section>
 <section id="reading-json-files" class="level3">
 <h3 class="anchored" data-anchor-id="reading-json-files">Reading JSON Files:</h3>
 <p>You can use the pandas library to read JSON files into a DataFrame.</p>
-<div class="cell" data-outputid="5cfad0d9-e3c8-4d9f-b3b0-f494cfc50f78">
+<div class="cell" data-outputid="d53e06df-ef40-4e99-bf8a-9474e6318dcc" data-execution_count="18">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>test_data_json <span class="op">=</span> pd.read_json(data_folder <span class="op">+</span> <span class="st">"test_data.json"</span>)</span>
@@ -1237,7 +1654,7 @@ memory usage: 4.4+ KB</code></pre>
 <section id="read-stata-data-files-.dta" class="level3">
 <h3 class="anchored" data-anchor-id="read-stata-data-files-.dta">Read Stata Data Files (.dta):</h3>
 <p>To read .dta files in Python, you can use the pandas library, which provides support for reading Stata data files. Stata data files have the .dta extension and are commonly used in econometrics and statistics. Here’s how you can read a Stata data file using pandas:</p>
-<div class="cell" data-outputid="433fc8c6-05c5-4c7d-facb-869df55b3177">
+<div class="cell" data-outputid="0fd20c07-7412-4f86-b01d-648dc212d536" data-execution_count="19">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>test_data_dta <span class="op">=</span> pd.read_stata(data_folder <span class="op">+</span> <span class="st">"test_data.dta"</span>)</span>
@@ -1250,139 +1667,139 @@ memory usage: 4.4+ KB</code></pre>
 </div>
 <p>The provided Stata data file is of version 110, but pandas supports importing versions 105, 108, 111, 113, 114, 115, 117, 118, and 119. Since version 110 is not directly supported by pandas, you might face some compatibility issues when trying to read it using the pd.read_stata() function.</p>
 <p>There are some third-party libraries, like pyreadstat, which provide more comprehensive support for reading Stata files with various versions, including version 110.</p>
-<div class="cell">
+<div class="cell" data-outputid="bab63fc8-2291-46a0-d4c5-0abf5e7022f6" data-execution_count="20">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pyreadstat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Collecting pyreadstat
+  Downloading pyreadstat-1.2.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.7/2.7 MB 16.6 MB/s eta 0:00:00
+Requirement already satisfied: pandas&gt;=1.2.0 in /usr/local/lib/python3.10/dist-packages (from pyreadstat) (1.5.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2.8.2)
+Requirement already satisfied: pytz&gt;=2020.1 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2022.7.1)
+Requirement already satisfied: numpy&gt;=1.21.0 in /usr/local/lib/python3.10/dist-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (1.22.4)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-packages (from python-dateutil&gt;=2.8.1-&gt;pandas&gt;=1.2.0-&gt;pyreadstat) (1.16.0)
+Installing collected packages: pyreadstat
+Successfully installed pyreadstat-1.2.2</code></pre>
 </div>
-<div class="cell" data-outputid="b78dd7a5-34ac-491d-c42d-b47f4e7026da">
+</div>
+<div class="cell" data-outputid="d65d0f51-90b6-4c2e-b20f-0ebea4289f87" data-execution_count="21">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>test_data_dta <span class="op">=</span> pyreadstat.read_dta(data_folder_drive <span class="op">+</span> <span class="st">"test_data.dta"</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get summary of the dataframe with .info()</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test_data_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>test_data_dta, metadata <span class="op">=</span> pyreadstat.read_dta(<span class="st">"/content/drive/MyDrive/data/test_data.dta"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get summary of the dataframe with .info()</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test_data_dta.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>(    ID    treat        var  rep     PH    TN    PN    GW  ster    DTM     SW  \
-0    1   Low As       BR01    1   84.0  28.3  27.7  35.7  20.5  126.0   28.4   
-1    2   Low As       BR01    2  111.7  34.0  30.0  58.1  14.8  119.0   36.7   
-2    3   Low As       BR01    3  102.3  27.7  24.0  44.6   5.8  119.7   32.9   
-3    4   Low As       BR06    1  118.0  23.3  19.7  46.4  20.3  119.0   40.0   
-4    5   Low As       BR06    2  115.3  16.7  12.3  19.9  32.3  120.0   28.2   
-5    6   Low As       BR06    3  111.0  19.0  15.3  35.9  14.9  116.3   42.3   
-6    7   Low As       BR28    1  114.3  21.7  19.3  56.2   6.1  123.7   35.4   
-7    8   Low As       BR28    2  124.0  25.3  21.0  49.2   9.2  114.3   60.6   
-8    9   Low As       BR28    3  120.3  23.0  19.0  48.6   4.2  113.3   69.8   
-9   10   Low As       BR35    1  130.0  19.7  14.7  36.6  12.1  126.0   57.3   
-10  11   Low As       BR35    2  133.3  21.0  16.3  39.9  11.5  130.7   53.0   
-11  12   Low As       BR35    3  129.0  17.7  14.3  43.0   8.7  132.3   32.6   
-12  13   Low As       BR36    1  113.0  18.0  15.7  39.0  13.2  121.7   45.8   
-13  14   Low As       BR36    2  118.3  23.0  17.3  35.8  28.0  121.7   44.1   
-14  15   Low As       BR36    3  118.3  29.7  16.3  45.8   6.9  117.0  114.3   
-15  16   Low As  Jefferson    1   96.7   8.7   8.7  15.9  21.5  121.3   16.8   
-16  17   Low As  Jefferson    2   94.7   9.7   9.7  18.0  18.6  116.7   16.7   
-17  18   Low As  Jefferson    3   97.3  12.3  10.3  18.9  16.7  116.7   19.0   
-18  19   Low As  Kaybonnet    1  134.7  11.7   9.7  34.9   7.8  115.7   35.6   
-19  20   Low As  Kaybonnet    2  120.7  15.3   9.3  28.9   4.9  114.0   29.0   
-20  21   Low As  Kaybonnet    3  123.7  12.7   9.3  32.4  10.4  113.3   29.4   
-21  22  High As       BR01    1   73.0  32.0  21.0  21.8  22.5  132.3   30.3   
-22  23  High As       BR01    2   77.0  36.3  31.0  31.7  20.1  129.3   34.3   
-23  24  High As       BR01    3   71.7  24.3  20.7  21.8  20.2  134.3   17.6   
-24  25  High As       BR06    1   97.7  20.7  14.3  21.2  11.8  131.0   25.6   
-25  26  High As       BR06    2   90.3  21.3  18.3  18.9  34.4  133.7   24.6   
-26  27  High As       BR06    3   91.0  18.3  14.3  13.2  58.2  132.7   24.5   
-27  28  High As       BR28    1   97.0  19.7  15.0  17.0  13.5  128.3   21.2   
-28  29  High As       BR28    2   92.3  26.3  17.7  21.1  21.3  126.0   28.7   
-29  30  High As       BR28    3   91.3  24.3  18.3  23.6  27.8  128.7   16.7   
-30  31  High As       BR35    1   94.3  22.7  12.3  10.0  55.9  154.0   35.2   
-31  32  High As       BR35    2  102.7  26.3  17.7  18.2  46.6  152.3   41.2   
-32  33  High As       BR35    3   97.3  22.7  14.0  22.2  52.5  151.7   43.3   
-33  34  High As       BR36    1  101.3  19.7  14.0  16.8  24.4  133.0   34.2   
-34  35  High As       BR36    2   94.7  22.0  17.7  24.5  28.5  133.7   30.8   
-35  36  High As       BR36    3   93.7  19.7  15.3  17.6  49.5  134.3   31.2   
-36  37  High As  Jefferson    1   72.7  10.3   9.0  11.5  26.6  127.0   14.2   
-37  38  High As  Jefferson    2   72.3   9.7   8.3  14.1  18.2  128.7   11.6   
-38  39  High As  Jefferson    3   80.0  13.3  11.0  23.0  12.6  127.0   16.3   
-39  40  High As  Kaybonnet    1   96.7  14.3   7.7   5.4  57.2  131.7   18.2   
-40  41  High As  Kaybonnet    2  101.0  15.7   8.0   5.2  82.8  130.7   28.7   
-41  42  High As  Kaybonnet    3  105.3  13.7  10.0  15.0  54.7  128.7   28.5   
+<pre><code>   ID   treat   var  rep     PH    TN    PN    GW  ster    DTM    SW    GAs  \
+0   1  Low As  BR01    1   84.0  28.3  27.7  35.7  20.5  126.0  28.4  0.762   
+1   2  Low As  BR01    2  111.7  34.0  30.0  58.1  14.8  119.0  36.7  0.722   
+2   3  Low As  BR01    3  102.3  27.7  24.0  44.6   5.8  119.7  32.9  0.858   
+3   4  Low As  BR06    1  118.0  23.3  19.7  46.4  20.3  119.0  40.0  1.053   
+4   5  Low As  BR06    2  115.3  16.7  12.3  19.9  32.3  120.0  28.2  1.130   
 
-      GAs   STAs  
-0   0.762  14.60  
-1   0.722  10.77  
-2   0.858  12.69  
-3   1.053  18.23  
-4   1.130  13.72  
-5   1.011  15.97  
-6   0.965  14.49  
-7   0.969  16.02  
-8   0.893  15.25  
-9   1.358  21.23  
-10  1.359  19.37  
-11  1.290  20.30  
-12  0.832  19.23  
-13  0.903  12.34  
-14  0.932  15.78  
-15  0.610  13.50  
-16  0.605   9.32  
-17  0.629  11.41  
-18  1.005  15.89  
-19  1.020   9.30  
-20  0.946  12.59  
-21  1.482  25.41  
-22  1.548  19.12  
-23  1.564  22.27  
-24  1.451  24.15  
-25  1.413  18.77  
-26  1.396  21.46  
-27  1.521  28.49  
-28  1.553  30.96  
-29  1.698  29.73  
-30  2.448  26.22  
-31  2.493  20.97  
-32  2.458  23.59  
-33  1.881  24.75  
-34  1.997  19.40  
-35  1.934  22.08  
-36  1.897  23.45  
-37  1.872  18.60  
-38  2.007  21.02  
-39  1.888  20.27  
-40  1.889  22.51  
-41  1.767  21.39  , &lt;pyreadstat._readstat_parser.metadata_container object at 0x7e4bb72238e0&gt;)</code></pre>
+    STAs  
+0  14.60  
+1  10.77  
+2  12.69  
+3  18.23  
+4  13.72  </code></pre>
 </div>
 </div>
-<div class="cell" data-outputid="2d9866a5-7e39-47ca-e413-7ec4d3c7c56f">
+<p>With pyreadstat we can easily read data from Google Drive file or colab session file. But it can’t read directly from URL. The following code will make an error.</p>
+<div class="cell" data-outputid="433fee49-3d85-4177-d256-fd31b0ec8c3a" data-execution_count="22">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the file using requests</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(data_folder <span class="op">+</span> <span class="st">"test_data.txt"</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract the filename from the URL</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    filename <span class="op">=</span> file_url.split(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a> <span class="co"># Save the content to a local file</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(<span class="st">"/content/"</span><span class="op">+</span>filename, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>        f.write(response.content)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"File '</span><span class="sc">{</span>filename<span class="sc">}</span><span class="ss">' downloaded successfully."</span>)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Failed to download the file."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>test_data_dta, metadata <span class="op">=</span> pyreadstat.read_dta(<span class="st">"https://github.com/shiful133/data/raw/main/soil_data/test_data.dta"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get summary of the dataframe with .info()</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test_data_dta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>PyreadstatError: ignored</code></pre>
+</div>
+</div>
+<p>But we can solve this with a trick. First read the file with “<code>requests</code>” library. Then make a copy of that file in colab session or Google drive. Then use the copy of that file.</p>
+<div class="cell" data-outputid="f6250df7-6a3f-4fee-e59c-00c46f00df81" data-execution_count="23">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the file using requests</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>file_url <span class="op">=</span> <span class="st">"https://github.com/shiful133/data/raw/main/soil_data/test_data.dta"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>save_path <span class="op">=</span> <span class="st">"/content/"</span>     <span class="co"># Save to colab session. Give Google Drive path if you want to save to Drive ("/content/drive/MyDrive/Python/").</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(file_url)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the request was successful (status code 200)</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    filename <span class="op">=</span> file_url.split(<span class="st">"/"</span>)[<span class="op">-</span><span class="dv">1</span>]      <span class="co"># Extract the filename from the URL</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a> <span class="co"># Save the content to colab session</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(save_path<span class="op">+</span>filename, <span class="st">"wb"</span>) <span class="im">as</span> f:</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>        f.write(response.content)</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"File '</span><span class="sc">{</span>filename<span class="sc">}</span><span class="ss">' downloaded successfully."</span>)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Failed to download the file."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>File 'test_data.txt' downloaded successfully.</code></pre>
+<pre><code>File 'test_data.dta' downloaded successfully.</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="d8d835b4-428d-4af2-b09b-8ac03c1224cf" data-execution_count="24">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>test_data_dta, metadata <span class="op">=</span> pyreadstat.read_dta(<span class="st">"/content/test_data.dta"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test_data_dta.info())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 42 entries, 0 to 41
+Data columns (total 13 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   ID      42 non-null     int64  
+ 1   treat   42 non-null     object 
+ 2   var     42 non-null     object 
+ 3   rep     42 non-null     int64  
+ 4   PH      42 non-null     float64
+ 5   TN      42 non-null     float64
+ 6   PN      42 non-null     float64
+ 7   GW      42 non-null     float64
+ 8   ster    42 non-null     float64
+ 9   DTM     42 non-null     float64
+ 10  SW      42 non-null     float64
+ 11  GAs     42 non-null     float64
+ 12  STAs    42 non-null     float64
+dtypes: float64(9), int64(2), object(2)
+memory usage: 4.4+ KB
+None</code></pre>
 </div>
 </div>
 </section>
 </section>
 </div>
-</div>
+<section id="plot" class="level2">
+<h2 class="anchored" data-anchor-id="plot">Plot</h2>
+<p>Reading data for analysis and exporting the results to another system for report writing can be done efficiently with R. There are multiple ways to import and export data to/from R. In this tutorial, you will learn some most common ways to read and write data with R.</p>
+<hr>
+</section>
+<section id="working-directory-1" class="level2">
+<h2 class="anchored" data-anchor-id="working-directory-1">Working directory</h2>
+<p>It would be best if you created a working directory in R to read and write files locally.</p>
+<p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The following example shows how to create the working directory in R.</p>
+</section>
+<section id="working-directory-1-1" class="level2">
+<h2 class="anchored" data-anchor-id="working-directory-1-1">Working directory 1</h2>
+<p>It would be best if you created a working directory in R to read and write files locally.</p>
+<p>Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

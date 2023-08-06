@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="generator" content="quarto-1.3.450">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Geospatial Analysis in R and Python - Data Import-Export in Python</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
+    <title>Geospatial Analysis in R and Python - Data Import-Export in Python</title>    <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.columns{display: flex; gap: min(4vw, 1.5em);}
+      div.column{flex: auto; overflow-x: auto;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+      ul.task-list li input[type="checkbox"] {
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+        vertical-align: middle;
+      }
+      /* CSS for syntax highlighting */
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+        }
+      pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+    </style>
+    <style>
+      .quarto-embed-header {
+        height: 3em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px;
+      }
+      .quarto-embed-header h6 {
+        font-size: 1em;
+        padding-top: 0.6em;
+        margin-left: 1em;
+        margin-right: 1em;
+        font-weight: 300;
+      }
+      .quarto-embed-header a.quarto-download-embed {
+        font-size: 0.7em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+    </style>
+    
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -73,7 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+     <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -92,18 +113,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+}</script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-
-
-<link rel="stylesheet" href="styles.css">
-</head>
-
-<body class="nav-sidebar docked nav-fixed">
-
-<div id="quarto-search-results"></div>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>  
+        <link rel="stylesheet" href="styles.css">
+      </head>
+  <body class="nav-sidebar docked nav-fixed quarto-notebook">
+    <div class="quarto-embed-header">
+      <h6><i class="bi bi-journal-code"></i> Python_Data_Import_Export.ipynb</h6>
+      <a href="./Python_Data_Import_Export.ipynb" class="btn btn-primary quarto-download-embed" download="Python_Data_Import_Export.ipynb">Download Notebook</a>
+    </div>
+     <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
@@ -258,9 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
+<main class="content page-columns page-full" id="quarto-document-content">      <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Data Import-Export in Python</h1>
 </div>
@@ -275,16 +293,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
-</header>
-
-<p><a href="https://colab.research.google.com/github/shiful133/r-python/blob/main/Python_Data_Import_Export.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+</header>     <p><a href="https://colab.research.google.com/github/shiful133/r-python/blob/main/Python_Data_Import_Export.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
 <p>Importing and exporting data in Google Colab, which is a popular platform for working with Python notebooks, involves using various libraries and methods to handle different file formats. Here’s a brief guide on how to perform data import and export in Python Colab:</p>
-<section id="working-directory" class="level2">
+<section id="working-directory" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="working-directory">Working Directory</h2>
 <p>In Google Colab, the working directory is set to the root directory by default. This root directory contains the Colab notebooks, and you can access files from your Google Drive as well. However, if you want to navigate and work within a specific directory, you can use the %cd magic command to change the current directory. Here’s how you can get and change the working directory in Google Colab:</p>
-<section id="get-current-working-directory" class="level3">
+<section id="get-current-working-directory" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="get-current-working-directory">Get Current Working Directory:</h3>
-<div class="cell" data-outputid="308dcde3-02f3-44bf-953e-a7dd0d65c773" data-execution_count="4">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell" data-outputid="308dcde3-02f3-44bf-953e-a7dd0d65c773" data-execution_count="4">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -296,12 +312,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>Current Directory: /content</code></pre>
 </div>
-</div>
+</div></div>
 </section>
-<section id="mounting-google-drive" class="level3">
+<section id="mounting-google-drive" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="mounting-google-drive">Mounting Google Drive:</h3>
 <p>If you want to access files from your Google Drive or change working directory to a folder in Google Drive, you’ll need to mount your Google Drive using the drive.mount() function.</p>
-<div class="cell" data-outputid="40ba70e8-e7c4-41fd-d24f-5983a8bb1be0" data-execution_count="27">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [27]:</pre></div><div class="cell" data-outputid="40ba70e8-e7c4-41fd-d24f-5983a8bb1be0" data-execution_count="27">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
@@ -311,11 +327,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).</code></pre>
 </div>
-</div>
+</div></div>
 </section>
-<section id="change-working-directory" class="level3">
+<section id="change-working-directory" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="change-working-directory">Change Working Directory:</h3>
-<div class="cell" data-outputid="809b67dd-86e2-4ead-b1c4-b856a8674f32" data-execution_count="6">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell" data-outputid="809b67dd-86e2-4ead-b1c4-b856a8674f32" data-execution_count="6">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change working directory</span></span>
@@ -325,11 +341,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>/content/drive/MyDrive/Python</code></pre>
 </div>
-</div>
+</div></div>
 </section>
-<section id="check-files-in-the-directory" class="level3">
+<section id="check-files-in-the-directory" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="check-files-in-the-directory">Check Files in the Directory:</h3>
-<div class="cell" data-outputid="f7bf6197-61b5-45f3-a6b4-777164724d13" data-execution_count="28">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [28]:</pre></div><div class="cell" data-outputid="f7bf6197-61b5-45f3-a6b4-777164724d13" data-execution_count="28">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check files in any directory</span></span>
@@ -344,23 +360,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  'rice_data.csv',
  'green_house.csv']</code></pre>
 </div>
-</div>
+</div></div>
 </section>
 </section>
-<section id="readimport-data-into-python" class="level2">
+<section id="readimport-data-into-python" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="readimport-data-into-python">Read/Import Data into Python:</h2>
-<section id="reading-csv-files" class="level3">
+<section id="reading-csv-files" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="reading-csv-files">Reading CSV Files:</h3>
 <p>You can use the <code>pandas</code> library to read CSV files in Colab. If the file is hosted online, you can directly provide the URL. If the file is uploaded to Colab, you can use the file upload widget.</p>
-<div class="cell" data-execution_count="8">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell" data-execution_count="8">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-</div>
-<section id="read-from-google-drive" class="level4">
+</div></div>
+<section id="read-from-google-drive" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="read-from-google-drive">Read from Google Drive:</h4>
-<div class="cell" data-outputid="6232aea9-ab44-441f-91ec-6f37d377170b" data-execution_count="9">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [9]:</pre></div><div class="cell" data-outputid="6232aea9-ab44-441f-91ec-6f37d377170b" data-execution_count="9">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data_folder_drive <span class="op">=</span> <span class="st">"/content/drive/MyDrive/data/"</span></span>
@@ -617,11 +633,11 @@ function displayQuickchartButton(domScope) {
     </div>
   </div>
 </div>
-</div>
+</div></div>
 </section>
-<section id="read-from-url" class="level4">
+<section id="read-from-url" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="read-from-url">Read from URL:</h4>
-<div class="cell" data-outputid="99195f01-ab6e-4396-dfeb-d1e8fcc814b3" data-execution_count="10">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell" data-outputid="99195f01-ab6e-4396-dfeb-d1e8fcc814b3" data-execution_count="10">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data_folder <span class="op">=</span> <span class="st">"https://github.com/shiful133/data/raw/main/soil_data/"</span></span>
@@ -879,13 +895,13 @@ function displayQuickchartButton(domScope) {
     </div>
   </div>
 </div>
-</div>
+</div></div>
 </section>
 </section>
-<section id="reading-xlsx-files" class="level3">
+<section id="reading-xlsx-files" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="reading-xlsx-files">Reading XLSX Files:</h3>
 <p>You can also use the pandas library to read XLSX files.</p>
-<div class="cell" data-outputid="18ae9458-8faa-436e-a5d9-fdd9eddfab78" data-execution_count="11">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [11]:</pre></div><div class="cell" data-outputid="18ae9458-8faa-436e-a5d9-fdd9eddfab78" data-execution_count="11">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>test_data_xlsx <span class="op">=</span> pd.read_excel(data_folder <span class="op">+</span> <span class="st">"test_data.xlsx"</span>) <span class="co"># data_folder variable defined in previous code block</span></span>
@@ -896,9 +912,9 @@ function displayQuickchartButton(domScope) {
 <div class="cell-output cell-output-stdout">
 <pre><code>['ID', 'treat', 'var', 'rep', 'PH', 'TN', 'PN', 'GW', 'ster', 'DTM', 'SW', 'GAs', 'STAs']</code></pre>
 </div>
-</div>
+</div></div>
 <p>###Reading .txt Files: You can use pandas to read TXT files. Reading tab separated, or comma separated txt file is very similar to reading CSV files. Since tab-separated values are essentially a form of delimited text, you can use the read_csv() function of pandas and specify the delimiter as a tab character.</p>
-<div class="cell" data-outputid="03d83d9e-0fb1-4aaf-9ba0-c962704fef5b" data-execution_count="12">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [12]:</pre></div><div class="cell" data-outputid="03d83d9e-0fb1-4aaf-9ba0-c962704fef5b" data-execution_count="12">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>test_data_txt <span class="op">=</span> pd.read_csv(data_folder <span class="op">+</span> <span class="st">"test_data.txt"</span>, delimiter<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>) <span class="co"># data_folder variable defined in previous code block</span></span>
@@ -1155,11 +1171,11 @@ function displayQuickchartButton(domScope) {
     </div>
   </div>
 </div>
-</div>
+</div></div>
 </section>
-<section id="reading-files-by-uploading" class="level3">
+<section id="reading-files-by-uploading" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="reading-files-by-uploading">Reading files by uploading:</h3>
-<div class="cell" data-outputid="c53c5203-c6ad-40dc-f59c-6f32d8e588eb" data-execution_count="15">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [15]:</pre></div><div class="cell" data-outputid="c53c5203-c6ad-40dc-f59c-6f32d8e588eb" data-execution_count="15">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading CSV from uploaded file</span></span>
@@ -1355,8 +1371,8 @@ scope.google.colab._files = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Saving green_house.csv to green_house.csv</code></pre>
 </div>
-</div>
-<div class="cell" data-outputid="040ef81b-7e89-407b-94b3-06530df58ee1" data-execution_count="16">
+</div></div>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [16]:</pre></div><div class="cell" data-outputid="040ef81b-7e89-407b-94b3-06530df58ee1" data-execution_count="16">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now you can work with df_uploaded_csv</span></span>
@@ -1612,10 +1628,10 @@ function displayQuickchartButton(domScope) {
     </div>
   </div>
 </div>
-</div>
-<section id="show-column-names" class="level4">
+</div></div>
+<section id="show-column-names" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="show-column-names">Show column names</h4>
-<div class="cell" data-outputid="02b73a84-9077-4cde-8cbf-923cb83537ee" data-execution_count="17">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [17]:</pre></div><div class="cell" data-outputid="02b73a84-9077-4cde-8cbf-923cb83537ee" data-execution_count="17">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> test_data_csv.columns.tolist()</span>
@@ -1625,13 +1641,13 @@ function displayQuickchartButton(domScope) {
 <div class="cell-output cell-output-stdout">
 <pre><code>['ID', 'treat', 'var', 'rep', 'PH', 'TN', 'PN', 'GW', 'ster', 'DTM', 'SW', 'GAs', 'STAs']</code></pre>
 </div>
-</div>
+</div></div>
 </section>
 </section>
-<section id="reading-json-files" class="level3">
+<section id="reading-json-files" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="reading-json-files">Reading JSON Files:</h3>
 <p>You can use the pandas library to read JSON files into a DataFrame.</p>
-<div class="cell" data-outputid="d53e06df-ef40-4e99-bf8a-9474e6318dcc" data-execution_count="18">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [18]:</pre></div><div class="cell" data-outputid="d53e06df-ef40-4e99-bf8a-9474e6318dcc" data-execution_count="18">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>test_data_json <span class="op">=</span> pd.read_json(data_folder <span class="op">+</span> <span class="st">"test_data.json"</span>)</span>
@@ -1660,12 +1676,12 @@ Data columns (total 13 columns):
 dtypes: float64(9), int64(2), object(2)
 memory usage: 4.4+ KB</code></pre>
 </div>
-</div>
+</div></div>
 </section>
-<section id="read-stata-data-files-.dta" class="level3">
+<section id="read-stata-data-files-.dta" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="read-stata-data-files-.dta">Read Stata Data Files (.dta):</h3>
 <p>To read .dta files in Python, you can use the pandas library, which provides support for reading Stata data files. Stata data files have the .dta extension and are commonly used in econometrics and statistics. Here’s how you can read a Stata data file using pandas:</p>
-<div class="cell" data-outputid="0fd20c07-7412-4f86-b01d-648dc212d536" data-execution_count="19">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [19]:</pre></div><div class="cell" data-outputid="0fd20c07-7412-4f86-b01d-648dc212d536" data-execution_count="19">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>test_data_dta <span class="op">=</span> pd.read_stata(data_folder <span class="op">+</span> <span class="st">"test_data.dta"</span>)</span>
@@ -1675,10 +1691,10 @@ memory usage: 4.4+ KB</code></pre>
 <div class="cell-output cell-output-error">
 <pre><code>ValueError: ignored</code></pre>
 </div>
-</div>
+</div></div>
 <p>The provided Stata data file is of version 110, but pandas supports importing versions 105, 108, 111, 113, 114, 115, 117, 118, and 119. Since version 110 is not directly supported by pandas, you might face some compatibility issues when trying to read it using the pd.read_stata() function.</p>
 <p>There are some third-party libraries, like pyreadstat, which provide more comprehensive support for reading Stata files with various versions, including version 110.</p>
-<div class="cell" data-outputid="bab63fc8-2291-46a0-d4c5-0abf5e7022f6" data-execution_count="20">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [20]:</pre></div><div class="cell" data-outputid="bab63fc8-2291-46a0-d4c5-0abf5e7022f6" data-execution_count="20">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pyreadstat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1695,8 +1711,8 @@ Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.10/dist-pac
 Installing collected packages: pyreadstat
 Successfully installed pyreadstat-1.2.2</code></pre>
 </div>
-</div>
-<div class="cell" data-outputid="d65d0f51-90b6-4c2e-b20f-0ebea4289f87" data-execution_count="21">
+</div></div>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [21]:</pre></div><div class="cell" data-outputid="d65d0f51-90b6-4c2e-b20f-0ebea4289f87" data-execution_count="21">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
@@ -1719,9 +1735,9 @@ Successfully installed pyreadstat-1.2.2</code></pre>
 3  18.23  
 4  13.72  </code></pre>
 </div>
-</div>
+</div></div>
 <p>With pyreadstat we can easily read data from Google Drive file or colab session file. But it can’t read directly from URL. The following code will make an error.</p>
-<div class="cell" data-outputid="433fee49-3d85-4177-d256-fd31b0ec8c3a" data-execution_count="22">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [22]:</pre></div><div class="cell" data-outputid="433fee49-3d85-4177-d256-fd31b0ec8c3a" data-execution_count="22">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyreadstat</span>
@@ -1732,9 +1748,9 @@ Successfully installed pyreadstat-1.2.2</code></pre>
 <div class="cell-output cell-output-error">
 <pre><code>PyreadstatError: ignored</code></pre>
 </div>
-</div>
+</div></div>
 <p>But we can solve this with a trick. First read the file with “<code>requests</code>” library. Then make a copy of that file in colab session or Google drive. Then use the copy of that file.</p>
-<div class="cell" data-outputid="f6250df7-6a3f-4fee-e59c-00c46f00df81" data-execution_count="23">
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [23]:</pre></div><div class="cell" data-outputid="f6250df7-6a3f-4fee-e59c-00c46f00df81" data-execution_count="23">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
@@ -1757,8 +1773,8 @@ Successfully installed pyreadstat-1.2.2</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>File 'test_data.dta' downloaded successfully.</code></pre>
 </div>
-</div>
-<div class="cell" data-outputid="d8d835b4-428d-4af2-b09b-8ac03c1224cf" data-execution_count="24">
+</div></div>
+<div class="cell-container column-page-left"><div class="cell-decorator"><pre>In [24]:</pre></div><div class="cell" data-outputid="d8d835b4-428d-4af2-b09b-8ac03c1224cf" data-execution_count="24">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>test_data_dta, metadata <span class="op">=</span> pyreadstat.read_dta(<span class="st">"/content/test_data.dta"</span>)</span>
@@ -1787,14 +1803,12 @@ dtypes: float64(9), int64(2), object(2)
 memory usage: 4.4+ KB
 None</code></pre>
 </div>
-</div>
+</div></div>
 
 
 </section>
 </section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+     </main> <!-- /main -->  <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -2026,8 +2040,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
-</div> <!-- /content -->
+</script>  </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
@@ -2044,8 +2057,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
   </div>
-</footer>
-
-
+</footer> 
+  
 
 </body></html>
