@@ -1,8 +1,10 @@
 ---
 title: "Data Import Export"
 # author: "Md. Shiful Islam"
+format: html
+notebook-view: false
+notebook-links: false
 ---
-::: {.panel-tabset}
 
 # Plot
 
@@ -26,8 +28,6 @@ It would be best if you created a working directory in R to read and write files
 
 Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.
 
-
-
 # Data
 
 ## Working directory 1
@@ -36,4 +36,6 @@ It would be best if you created a working directory in R to read and write files
 
 Before creating a working directory, you may check the directory of your current R session; the function getwd() will print the current working directory path as a string.
 
+::: {#ipynb}
+{{< embed Python_Data_Import_Export.ipynb echo=true >}}
 :::

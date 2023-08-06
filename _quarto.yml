@@ -37,7 +37,7 @@ website:
       - text: "© CC-By Md.Shiful Islam, Senior Scientific Officer, Soil Resource Development Institute, Bangladesh 2023</br> R Script Credit: Zia Ahmed, Unversity at Buffalo"
 format:
   html:
-    theme: cosmo
+    theme: lumen
     css: styles.css
     toc: true
     code-fold: true

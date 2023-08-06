@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Geospatial Analysis in R and Python"
+title: "Introduction"
 format: html
 ---
 
@@ -15,4 +15,3 @@ In this exploration of geospatial analysis in R and Python, we will delve into t
 
 Whether you are an environmental scientist aiming to analyze climate patterns, an urban planner seeking insights for better city development, or simply curious about the fascinating world of geospatial data, this journey through geospatial analysis in R and Python will equip you with the skills and knowledge to unlock valuable insights from spatial data and make informed decisions based on geographic context. Let's embark on this exciting adventure together and harness the power of geospatial analysis with R and Python!
 
-<script src="http://gist-it.appspot.com/https://raw.githubusercontent.com/shiful133/r-python/main/Titanic_Data_ggplot2.ipynb"></script>
