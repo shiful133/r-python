@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Geospatial Analysis in R and Python - Read/Write Spatial Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Geospatial Analysis in R and Python</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Read/Write Spatial Data</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text"><b>MENU</b></span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">R in RStudio</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">R in Colab</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./R_Titanic_Data_ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ggplot2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+ <span class="menu-text">Python in Colab</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+ <span class="menu-text">Install Packages in Google Drive</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./python-data-import-export.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Import-Export</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vector-data" id="toc-vector-data" class="nav-link active" data-scroll-target="#vector-data">Vector Data</a></li>
+  <li><a href="#raster-data" id="toc-raster-data" class="nav-link" data-scroll-target="#raster-data">Raster data</a></li>
+  <li><a href="#r-packages-for-spatial-read-and-write" id="toc-r-packages-for-spatial-read-and-write" class="nav-link" data-scroll-target="#r-packages-for-spatial-read-and-write">R Packages for Spatial Read and Write</a>
+  <ul class="collapse">
+  <li><a href="#sf" id="toc-sf" class="nav-link" data-scroll-target="#sf">sf</a></li>
+  <li><a href="#rgdal" id="toc-rgdal" class="nav-link" data-scroll-target="#rgdal">rgdal</a></li>
+  <li><a href="#raster" id="toc-raster" class="nav-link" data-scroll-target="#raster">raster</a></li>
+  <li><a href="#install-rpy2" id="toc-install-rpy2" class="nav-link" data-scroll-target="#install-rpy2">Install rpy2</a></li>
+  <li><a href="#mount-google-drive" id="toc-mount-google-drive" class="nav-link" data-scroll-target="#mount-google-drive">Mount Google Drive</a></li>
+  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages">Install Packages</a></li>
+  <li><a href="#load-library" id="toc-load-library" class="nav-link" data-scroll-target="#load-library">Load library</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul></li>
+  <li><a href="#read-and-write-vector-data" id="toc-read-and-write-vector-data" class="nav-link" data-scroll-target="#read-and-write-vector-data">Read and Write Vector Data</a>
+  <ul class="collapse">
+  <li><a href="#poylgons" id="toc-poylgons" class="nav-link" data-scroll-target="#poylgons">Poylgons</a></li>
+  <li><a href="#spatial-point-data" id="toc-spatial-point-data" class="nav-link" data-scroll-target="#spatial-point-data">Spatial Point data</a></li>
+  <li><a href="#lines-or-polylines" id="toc-lines-or-polylines" class="nav-link" data-scroll-target="#lines-or-polylines">Lines or Polylines</a></li>
+  </ul></li>
+  <li><a href="#read-and-write-raster-data" id="toc-read-and-write-raster-data" class="nav-link" data-scroll-target="#read-and-write-raster-data">Read and Write Raster Data</a>
+  <ul class="collapse">
+  <li><a href="#single-band-raster" id="toc-single-band-raster" class="nav-link" data-scroll-target="#single-band-raster">Single band raster</a></li>
+  <li><a href="#multi-bands-raster" id="toc-multi-bands-raster" class="nav-link" data-scroll-target="#multi-bands-raster">Multi-bands raster</a></li>
+  </ul></li>
+  <li><a href="#geojson-data" id="toc-geojson-data" class="nav-link" data-scroll-target="#geojson-data">GeoJson data</a></li>
+  <li><a href="#kml" id="toc-kml" class="nav-link" data-scroll-target="#kml">KML</a>
+  <ul class="collapse">
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading">Further Reading</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Read/Write Spatial Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><a href="https://colab.research.google.com/github/shiful133/r-python/blob/main/python_read_write_spatial_data.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
+<p>Zia Ahmed, University at Buffalo</p>
+<section id="vector-data" class="level2">
+<h2 class="anchored" data-anchor-id="vector-data">Vector Data</h2>
+<p>Vector data is a type of geospatial data representation used in Geographic Information Systems (GIS) and computer graphics. It represents spatial information using points, lines, and polygons, which are defined by their geometric coordinates. These coordinates consist of x and y (and sometimes z) values that describe the location of each point, the vertices of lines, or the corners of polygons.</p>
+<p>Here’s a breakdown of the main elements of vector data:</p>
+<ol type="1">
+<li><p><strong>Points</strong>: A single data point that represents a specific location in space, defined by its x and y coordinates (and potentially z for 3D data). Points are often used to represent features like cities, landmarks, or sampling locations.</p></li>
+<li><p><strong>Lines (Polylines)</strong>: A series of connected points, which can be straight or curved, used to represent linear features such as roads, rivers, or boundaries. Lines are composed of multiple vertices that define their shape.</p></li>
+<li><p><strong>Polygons</strong>: Closed shapes formed by connecting a series of lines to enclose an area. Polygons are used to represent features like countries, lakes, forests, and other spatially bounded regions.</p></li>
+</ol>
+<p>Vector data provides a more detailed and accurate representation of geographic features compared to raster data, which is another common data format used in GIS. One of the significant advantages of vector data is that it allows for precise measurements, editing, and analysis of geographic features. It is also more scalable and efficient for storing data with well-defined boundaries and discrete features.</p>
+<p>Some common vector data formats include Shapefile (.shp), GeoJSON (.geojson), and Keyhole Markup Language (.kml). These formats can store various attributes along with the spatial coordinates, making it possible to attach additional information (e.g., population data for cities or elevation data for terrain) to each feature represented in the vector dataset.</p>
+<p>The <strong>shapefile</strong>, a interchangeably data format which are regulated by <a href="https://www.esri.com/en-us/home">ESRI</a>. It is one of the most common form of geospatial vector data used in GIS software and analyses. Three unique files are required for a shapefile, including: <strong>.shx</strong> (shape index format; this tags the shapefile with a position, so users can move it forward and backward among layers, a <strong>.shp</strong> (shape format, which stores geometric data, and a <strong>.dbf</strong> (attribute format file; which holds attributes (information) for the shapes in the file).</p>
+</section>
+<section id="raster-data" class="level2">
+<h2 class="anchored" data-anchor-id="raster-data">Raster data</h2>
+<p>Raster data is another type of geospatial data representation used in Geographic Information Systems (GIS) and various other applications. Unlike vector data, which uses points, lines, and polygons to represent spatial information, raster data organizes information in a grid-like structure, with each cell or pixel containing a value that represents a specific attribute or measurement at a particular location.</p>
+<p>Key characteristics of raster data include:</p>
+<ol type="1">
+<li><p><strong>Pixel-based representation</strong>: Raster data divides the geographic area into a regular grid of pixels, where each pixel corresponds to a specific location on the Earth’s surface. Each pixel stores a value representing a particular attribute, such as elevation, temperature, land use, satellite imagery, or any other continuous data.</p></li>
+<li><p><strong>Resolution</strong>: The resolution of raster data refers to the size of each pixel, which determines the level of detail in the data. Higher resolution means smaller pixel sizes and more detail, while lower resolution means larger pixel sizes and less detail.</p></li>
+<li><p><strong>Cell values</strong>: The cell values in raster data can represent a wide range of information, such as elevation above sea level, temperature readings, land cover categories, or satellite sensor measurements.</p></li>
+<li><p><strong>Coverage and extent</strong>: Raster datasets have a defined coverage area and extent, meaning they represent a specific geographic region with boundaries.</p></li>
+</ol>
+<p>Common examples of raster data include digital elevation models (DEMs) used for terrain representation, satellite imagery, aerial photographs, climate data, and remotely sensed data from various sensors.</p>
+<p>Raster data has several advantages, including its ability to efficiently store and process large continuous datasets and perform spatial analysis like interpolation, proximity analysis, and slope calculations. However, it may not be as accurate or suitable for representing discrete features with well-defined boundaries compared to vector data.</p>
+<p>Raster data formats often include GeoTIFF (.tif), JPEG (.jpg), PNG (.png), and many other specialized formats depending on the type of data being represented and the intended use.</p>
+<p>Unlike vector data, a raster data consists of cells or pixels organized into rows and columns as a matrix where each cell contains a value representing geographical feature on the earth. The size of the area on the surface that each pixel covers is known as the spatial resolution of the image. For instance, an image that has a 1 m spatial resolution means that each pixel in the image represents a 1 m x 1 m area. There are two types of raster data: continuous and discrete. An example of discrete raster data is Land use raster. Data types are flexible, including discrete and categorical data, such as soil or land-use maps, or continuous data as in digital elevation models, precipitation gradient maps, or pollutant concentration maps, etc.</p>
+<p><img src="https://github.com/zia207/r-colab/blob/main/Image/raster.png?raw=1" class="img-fluid" width="359"></p>
+<p>Generally, two types of raster use in GIS and remote sensing application: <strong>a single band</strong>, or layer measure of a single characteristic of spatial area and <strong>multiple bands</strong> raster contains multiple spatially corresponding matrices of cell values representing the same spatial area. An example of a single-band raster data set is a digital elevation model (DEM). Each cell in a DEM contains only one value representing elevation of earth surface. Most satellite imagery has multiple bands, typically containing values within band of the electromagnetic spectrum.</p>
+</section>
+<section id="r-packages-for-spatial-read-and-write" class="level2">
+<h2 class="anchored" data-anchor-id="r-packages-for-spatial-read-and-write">R Packages for Spatial Read and Write</h2>
+<section id="sf" class="level3">
+<h3 class="anchored" data-anchor-id="sf">sf</h3>
+<p>The “sf” package provides a consistent and efficient set of tools for handling spatial data, including reading, writing, manipulating, and visualizing spatial data. It also supports various spatial operations and is compatible with many other R packages that deal with spatial data.</p>
+<p>Some of the key functionalities of the “sf” package include:</p>
+<ol type="1">
+<li><p>Reading and Writing: Loading and saving spatial data in various formats, such as shapefiles, GeoJSON, and spatial databases.</p></li>
+<li><p>Data Manipulation: Working with spatial data alongside traditional data frames, allowing for easy filtering, subsetting, and merging of data.</p></li>
+<li><p>Spatial Operations: Performing geometric operations like intersections, unions, and buffering on spatial data.</p></li>
+<li><p>Visualization: Creating maps and visualizing spatial data using functions that work well with ggplot2.</p></li>
+<li><p>Coordinate Transformation: Converting spatial data between different coordinate reference systems (CRS) and projecting data onto different map projections.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>install.packages(‘sf’)</p>
+</blockquote>
+</section>
+<section id="rgdal" class="level3">
+<h3 class="anchored" data-anchor-id="rgdal">rgdal</h3>
+<p>In the context of R, “rgdal” is a package that provides bindings to the Geospatial Data Abstraction Library (GDAL) for reading, writing, and manipulating geospatial raster and vector data formats. GDAL is a powerful open-source library that supports a wide range of geospatial data formats commonly used in the GIS (Geographic Information Systems) and remote sensing domains.</p>
+<p>The “rgdal” package allows R users to work with spatial data in various formats, including but not limited to shapefiles, GeoTIFFs, NetCDF, and more. It enables data import, export, and transformation between different coordinate reference systems (CRS). The package also facilitates the extraction of geospatial information, such as spatial extents and coordinate information.</p>
+<p>Important functions and features provided by “rgdal” include:</p>
+<ol type="1">
+<li><p>Data Import and Export: Reading and writing geospatial data to and from various formats using functions like <strong><code>readOGR</code></strong>, <strong><code>writeOGR</code></strong>, <strong><code>readGDAL</code></strong>, <strong><code>writeGDAL</code></strong>, etc.</p></li>
+<li><p>Coordinate Transformation: Converting data between different CRS using <strong><code>spTransform</code></strong> and <strong><code>project</code></strong>.</p></li>
+<li><p>Spatial Subsetting: Subsetting and clipping spatial data based on bounding boxes or other spatial objects.</p></li>
+<li><p>Data Information: Extracting metadata and other geospatial information from datasets.</p></li>
+</ol>
+<p>To use the “rgdal” package in R, you need to install it along with its dependencies. However, it’s important to note that installing the “rgdal” package can be tricky due to the system-level dependencies required by GDAL. Depending on your operating system (Windows, macOS, or Linux), you might need to install additional libraries or packages before successfully installing “rgdal.”</p>
+<blockquote class="blockquote">
+<p>install.packages(‘rgdal’)</p>
+</blockquote>
+</section>
+<section id="raster" class="level3">
+<h3 class="anchored" data-anchor-id="raster">raster</h3>
+<p>the “raster” package is an important R package used for working with raster data, which represents data in grid format (e.g., satellite images, digital elevation models, climate data) rather than vector format (e.g., points, lines, polygons). The package provides a wide range of functionalities for reading, writing, manipulating, and analyzing raster datasets.</p>
+<p>The “raster” package is built on top of the “sp” and “rgdal” packages, making it easy to integrate raster data with spatial data. It offers efficient and memory-friendly methods for handling large raster datasets and supports various raster file formats, including GeoTIFF, NetCDF, and more.</p>
+<p>Some of the key functionalists of the “raster” package include:</p>
+<ol type="1">
+<li><p>Data Import and Export: Reading and writing raster data from and to various file formats using functions like <strong><code>raster()</code></strong>, <strong><code>brick()</code></strong>, <strong><code>writeRaster()</code></strong>, and more.</p></li>
+<li><p>Data Manipulation: Resampling, cropping, masking, and reprojecting raster data.</p></li>
+<li><p>Mathematical Operations: Performing mathematical operations on raster data, such as map algebra, cell statistics, and overlay operations.</p></li>
+<li><p>Zonal Statistics: Calculating statistics (e.g., mean, sum, max) within defined zones or polygons.</p></li>
+<li><p>Visualization: Creating various types of plots and visualizations for raster data.</p></li>
+<li><p>Time Series Analysis: Handling and analyzing raster time series data.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>install.packages(‘raster’)</p>
+</blockquote>
+<p>In this exercise, you will learn how to read and write the following types of spatial data with R.</p>
+<ul>
+<li><p>Vector data</p>
+<ul>
+<li><p>Polygon data</p></li>
+<li><p>Points Vector</p></li>
+<li><p>Lines or Polylines</p></li>
+</ul></li>
+<li><p>Raster data</p>
+<ul>
+<li><p>Single band raster</p></li>
+<li><p>Multi-bands raster</p></li>
+</ul></li>
+<li><p>GeoJson format</p></li>
+<li><p>KML format</p></li>
+</ul>
+</section>
+<section id="install-rpy2" class="level3">
+<h3 class="anchored" data-anchor-id="install-rpy2">Install rpy2</h3>
+<div class="cell" data-outputid="7955d0ee-742c-48e2-f882-e211644dd85c">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip uninstall rpy2 <span class="op">-</span>y</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install rpy2<span class="op">==</span><span class="fl">3.5.1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext rpy2.ipython</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Found existing installation: rpy2 3.4.2
+Uninstalling rpy2-3.4.2:
+  Successfully uninstalled rpy2-3.4.2
+Collecting rpy2==3.5.1
+  Downloading rpy2-3.5.1.tar.gz (201 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 201.7/201.7 kB 3.5 MB/s eta 0:00:00
+  Preparing metadata (setup.py) ... done
+Requirement already satisfied: cffi&gt;=1.10.0 in /usr/local/lib/python3.10/dist-packages (from rpy2==3.5.1) (1.15.1)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.10/dist-packages (from rpy2==3.5.1) (3.1.2)
+Requirement already satisfied: pytz in /usr/local/lib/python3.10/dist-packages (from rpy2==3.5.1) (2022.7.1)
+Requirement already satisfied: tzlocal in /usr/local/lib/python3.10/dist-packages (from rpy2==3.5.1) (5.0.1)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.10/dist-packages (from cffi&gt;=1.10.0-&gt;rpy2==3.5.1) (2.21)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.10/dist-packages (from jinja2-&gt;rpy2==3.5.1) (2.1.3)
+Building wheels for collected packages: rpy2
+  Building wheel for rpy2 (setup.py) ... done
+  Created wheel for rpy2: filename=rpy2-3.5.1-cp310-cp310-linux_x86_64.whl size=314932 sha256=ad23cb4a2e5d5ec96981258322d07768cde91462933e4324cc44d7bcbd580206
+  Stored in directory: /root/.cache/pip/wheels/73/a6/ff/4e75dd1ce1cfa2b9a670cbccf6a1e41c553199e9b25f05d953
+Successfully built rpy2
+Installing collected packages: rpy2
+Successfully installed rpy2-3.5.1</code></pre>
+</div>
+</div>
+</section>
+<section id="mount-google-drive" class="level3">
+<h3 class="anchored" data-anchor-id="mount-google-drive">Mount Google Drive</h3>
+<div class="cell" data-outputid="7252cd29-b074-4d49-edb3-4904e22c4e0c">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> drive</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>drive.mount(<span class="st">'/content/drive'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount("/content/drive", force_remount=True).</code></pre>
+</div>
+</div>
+</section>
+<section id="install-packages" class="level3">
+<h3 class="anchored" data-anchor-id="install-packages">Install Packages</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>install.packages(c(<span class="st">"sf"</span>, <span class="st">'raster'</span>, <span class="st">'rgdal'</span>), lib<span class="op">=</span><span class="st">'drive/My Drive/R/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>install.packages(<span class="st">'devtools'</span>, lib<span class="op">=</span><span class="st">'drive/My Drive/R/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>library(devtools)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>install_github(<span class="st">"bleutner/RStoolbox"</span>, lib<span class="op">=</span><span class="st">'drive/My Drive/R/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>install.packages(<span class="st">"geojsonsf"</span>, lib<span class="op">=</span><span class="st">'drive/My Drive/R/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>install.packages(c(<span class="st">"mapview"</span>, <span class="st">'geojson'</span>), lib<span class="op">=</span><span class="st">'drive/My Drive/R/'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="load-library" class="level3">
+<h3 class="anchored" data-anchor-id="load-library">Load library</h3>
+<div class="cell" data-outputid="c0ad8683-d51d-4133-dd16-a9c361630a76">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>.libPaths(<span class="st">'drive/My Drive/R'</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>library(sf)       <span class="co"># spatial vector data</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>library (raster)    <span class="co"># raster and vector data read &amp; write</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>library (rgdal)     <span class="co"># raster and vector data read &amp; write</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: Linking to GEOS 3.10.2, GDAL 3.4.3, PROJ 8.2.1; sf_use_s2() is TRUE
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: Loading required package: sp
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+which was just loaded, will retire in October 2023.
+Please refer to R-spatial evolution reports for details, especially
+https://r-spatial.org/r/2023/05/15/evolution4.html.
+It may be desirable to make the sf package available;
+package maintainers should consider adding sf to Suggests:.
+The sp package is now running under evolution status 2
+     (status 2 uses the sf package in place of rgdal)
+
+WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: Please note that rgdal will be retired during October 2023,
+plan transition to sf/stars/terra functions using GDAL and PROJ
+at your earliest convenience.
+See https://r-spatial.org/r/2023/05/15/evolution4.html and https://github.com/r-spatial/evolution
+rgdal: version: 1.6-7, (SVN revision 1203)
+Geospatial Data Abstraction Library extensions to R successfully loaded
+Loaded GDAL runtime: GDAL 3.4.3, released 2022/04/22
+Path to GDAL shared files: /usr/share/gdal
+GDAL binary built with GEOS: TRUE 
+Loaded PROJ runtime: Rel. 8.2.1, January 1st, 2022, [PJ_VERSION: 821]
+Path to PROJ shared files: /root/.local/share/proj:/usr/share/proj
+PROJ CDN enabled: TRUE
+Linking to sp version:2.0-0
+To mute warnings of possible GDAL/OSR exportToProj4() degradation,
+use options("rgdal_show_exportToProj4_warnings"="none") before loading sp or rgdal.
+</code></pre>
+</div>
+</div>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>In this exercise we use following data set:</p>
+<ol type="1">
+<li><p>Spatial polygon of the district of Bangladesh (bd_district.shp)</p></li>
+<li><p>Spatial point data of soil sampling location under Rajshahi Division of Bangladesh (raj_soil_data_GCS.shp)</p></li>
+<li><p>Spatial line of road net work of Rajshai division (raj_road_GCS.shp)</p></li>
+<li><p>SRTM DEM raster of Rajshahi division (raj_DEM_GCS.tif)</p></li>
+<li><p>One tile of Landsat 9 for Rajshahi Division</p></li>
+</ol>
+<p>All data could be found <a href="https://github.com/zia207/r-colab/tree/main/Data/Bangladesh/">here</a> for download.</p>
+<p>Before reading the data from a local drive, you need to define a working directory from where you want to read or to write data. You may use <strong>setwd()</strong> function to create a working directory. Or we can define a path for data outside of our working directory from where we can read files. In this case, we will use <strong>paste0(data path, “file name”)</strong>. I will load data from my Google drive or directly from my github repository.</p>
+</section>
+</section>
+<section id="read-and-write-vector-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-and-write-vector-data">Read and Write Vector Data</h2>
+<section id="poylgons" class="level3">
+<h3 class="anchored" data-anchor-id="poylgons">Poylgons</h3>
+<p>For reading ESRI shape file, we can use either <strong>readOGR()</strong> of <strong>rgdal</strong> or <strong>shapefile</strong> of <strong>raster</strong> packages to read shape file from your local drive.</p>
+<div class="cell" data-outputid="70aa03a3-1d76-40cb-b4fb-b3596dd2fad1">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># reading shape file with raster or rgdal package from google drive</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>dist<span class="op">&lt;-</span>rgdal::readOGR(<span class="st">"/content/drive/MyDrive/Data/Bangladesh/Shapefiles/bd_district.shp"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>dist<span class="op">&lt;-</span>raster::shapefile(<span class="st">'/content/drive/MyDrive/Data/Bangladesh/Shapefiles/bd_district.shp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>OGR data source with driver: ESRI Shapefile 
+Source: "/content/drive/MyDrive/Data/Bangladesh/Shapefiles/bd_district.shp", layer: "bd_district"
+with 64 features
+It has 14 fields</code></pre>
+</div>
+</div>
+<p>You may also use <strong>st_read()</strong> from <strong>sf</strong> package to load shapefile directly from my github using GDAL Virtual File Systems (vsicurl).</p>
+<div class="cell" data-outputid="58669560-06df-4b86-b718-da326559a163">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading shape file  sf package from github</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>dist.st <span class="op">=</span> sf::st_read(<span class="st">"/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/bd_district.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `bd_district' from data source 
+  `/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/bd_district.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 64 features and 14 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 88.00863 ymin: 20.59061 xmax: 92.68031 ymax: 26.63451
+CRS:           NA</code></pre>
+</div>
+</div>
+<p>We plot st object using polt() function:</p>
+<div class="cell" data-outputid="94f727e6-cfeb-41c3-ff4d-ab2cc6357376">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plot(dist.st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We can only plot single layer (geometry)</p>
+<div class="cell" data-outputid="469b659b-982c-4aeb-eef4-ed6e326ff8fe">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>plot(dist.st$geometry, main<span class="op">=</span><span class="st">"District of Rajshahi Division"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="write-spatial-polygons" class="level4">
+<h4 class="anchored" data-anchor-id="write-spatial-polygons">Write spatial polygons</h4>
+<p>We you can use st_write() to write st objects as shape files</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>dist.sp <span class="op">&lt;-</span> sf:::as_Spatial(dist.st$geom) <span class="co"># This works</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>raster::shapefile(dist.sp, <span class="st">"bd_district.shp"</span>, overwrite<span class="op">=</span>TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We can also use <strong>shapefile</strong> function of raster package to write the vector data. but before you have to convert st objects to Spatial Polygon dataframe.</p>
+<div class="cell" data-outputid="91737f51-69e2-4292-d5c9-7fe8432c62ed">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>sf::st_write(dist.st, <span class="st">"bd_district.shp"</span>, append<span class="op">=</span>FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: writing: substituting ENGCRS["Undefined Cartesian SRS with unknown unit"] for missing CRS
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Deleting layer `bd_district' using driver `ESRI Shapefile'
+Writing layer `bd_district' to data source 
+  `bd_district.shp' using driver `ESRI Shapefile'
+Writing 64 features with 14 fields and geometry type Multi Polygon.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="spatial-point-data" class="level3">
+<h3 class="anchored" data-anchor-id="spatial-point-data">Spatial Point data</h3>
+<p>We will read point shape file containing around 5,000 soil samples points of Rajshahi Division. These samples were collected by the SRDI. We will use <strong>shapefile()</strong> or <strong>st_read()</strong> to read this vector data.</p>
+<div class="cell" data-outputid="c1abdb19-9744-44a8-c0d0-6b9e009d3332">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Reading point shape file with raster package from google drive</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>point<span class="op">&lt;-</span>raster::shapefile(<span class="st">'/content/drive/MyDrive/Data/Bangladesh/Shapefiles/raj_soil_data_GCS.shp'</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(proj4string(point.GCS))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "+proj=longlat +datum=WGS84 +no_defs"</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="870422f0-e575-49f2-9d21-7de23b08dd65">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from github</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>point.st <span class="op">=</span> sf::st_read(<span class="st">"/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_soil_data_GCS.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `raj_soil_data_GCS' from data source 
+  `/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_soil_data_GCS.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 5796 features and 34 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: 88.05378 ymin: 23.8279 xmax: 89.81412 ymax: 25.26618
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="a55a7de6-ee73-4e7f-8747-84f95b124e72">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plot(point.st,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>     main<span class="op">=</span> <span class="st">"Point Vector map"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>     pch<span class="op">=</span><span class="dv">20</span>,   <span class="co"># symbol type</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>     cex<span class="op">=</span><span class="fl">0.8</span>)  <span class="co"># symbol size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-outputid="05ec3e5f-e9f1-41c5-f2e7-e9fcd98c0334">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plot(point.st$geometry, main<span class="op">=</span><span class="st">"Soil Sample Collecting locations"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>box()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="lines-or-polylines" class="level3">
+<h3 class="anchored" data-anchor-id="lines-or-polylines">Lines or Polylines</h3>
+<p>One-dimensional lines, also called polylines, are used to represent geographical features like rivers, roads, railroads, trails, and topographic lines. Note that these features are linear in nature and do not have area like polygons. Hence, they can measure distance.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from google drive</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>line<span class="op">&lt;-</span>raster::shapefile(<span class="st">'/content/drive/MyDrive/Data/Bangladesh/Shapefiles/raj_road_GCS.shp'</span>)      <span class="co"># with raster</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-outputid="6c7cacc2-cc68-43dd-a216-29d749f5ad5b">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from github</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>lines.st <span class="op">=</span> sf::st_read(<span class="st">"/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_road_GCS.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `raj_road_GCS' from data source 
+  `/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_road_GCS.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 1596 features and 7 fields
+Geometry type: MULTILINESTRING
+Dimension:     XY
+Bounding box:  xmin: 88.10178 ymin: 23.83185 xmax: 89.80968 ymax: 25.2748
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="493ea454-222e-4def-dc51-e47c1e36bf87">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>plot(lines.st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-outputid="544bc471-754a-4b5a-c00d-c0001357f102">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>plot(lines.st$geometry, main<span class="op">=</span><span class="st">"Major Road Netork"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>box()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="read-and-write-raster-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-and-write-raster-data">Read and Write Raster Data</h2>
+<section id="single-band-raster" class="level3">
+<h3 class="anchored" data-anchor-id="single-band-raster">Single band raster</h3>
+<p>A single band raster, also known as a single-band image or grayscale image, is a type of raster data that contains only one band or layer of information. In a single-band raster, each pixel is represented by a single value, typically indicating a certain property or characteristic at that location. The value of each pixel in the raster corresponds to the magnitude of the property being measured at that specific location. Digital Elevation Models (DEMs) represent the elevation or height values of the Earth’s surface at each pixel location. DEMs are often used in terrain analysis, hydrology, and 3D visualization.</p>
+<p><strong>raster()</strong> function of raster package will use to read the single band raster data, such DEM in R</p>
+<div class="cell" data-outputid="d2ac7ce7-9ddd-428e-a2bb-231838518d60">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from google drive</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>dem <span class="op">=</span> raster::raster(<span class="st">"/content/drive/MyDrive/Data/Bangladesh/Raster/raj_DEM_GCS.tif"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>plot(dem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-outputid="4d2fd7fd-7c2b-4ebb-e7d5-b1a814d3bc8b">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from github</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>dem<span class="op">=</span> raster::raster(<span class="st">"/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh/Raster/raj_DEM_GCS.tif"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>dem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>class      : RasterLayer 
+dimensions : 625, 768, 480000  (nrow, ncol, ncell)
+resolution : 0.002378588, 0.002382236  (x, y)
+extent     : 87.99895, 89.82571, 23.79179, 25.28068  (xmin, xmax, ymin, ymax)
+crs        : +proj=longlat +datum=WGS84 +no_defs 
+source     : raj_DEM_GCS.tif 
+names      : Band_1 
+values     : -10, 54  (min, max)
+</code></pre>
+</div>
+</div>
+<p>We can write raster as geotiff using writeRaster() function:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>raster::writeRaster(dem, filename<span class="op">=</span><span class="st">"/content/drive/MyDrive/Data/Bangladesh/Raster/raj_DEM_GCS.tif"</span>, formate<span class="op">=</span><span class="st">"GTiff"</span>,  overwrite<span class="op">=</span>TRUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="multi-bands-raster" class="level3">
+<h3 class="anchored" data-anchor-id="multi-bands-raster">Multi-bands raster</h3>
+<p>A multiband raster, also known as a multi-band image, is a type of raster data that contains multiple bands or layers of information. Each band in the raster represents a different property or characteristic at each pixel location on the Earth’s surface. Multiband rasters are widely used in various fields, including remote sensing, GIS (Geographic Information Systems), and image processing, to capture and analyze complex data that cannot be represented in a single band.</p>
+<p>For loading multi-bands image in R, we will use a sub-set of Landsat 9 multispectral image covering Onondaga county of New York state. This image was downloaded from <a href="http://earthexplorer.usgs.gov/">USGS Earth Explore</a>.</p>
+<p>You can read single band image one by one with <strong>raster()</strong> function.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read band 2 (Blue band)</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>b2<span class="op">=</span>raster::raster(<span class="st">'/content/drive/MyDrive/Data/Bangladesh/LC09_L2SP_138043_20221216_20221223_02_T1/LC09_L2SP_138043_20221216_20221223_02_T1_SR_B2.TIF'</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># read band 3 (Green band)</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>b3<span class="op">=</span>raster::raster(<span class="st">'/content/drive/MyDrive/Data/Bangladesh/LC09_L2SP_138043_20221216_20221223_02_T1/LC09_L2SP_138043_20221216_20221223_02_T1_SR_B3.TIF'</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># read band 4 (Red band)</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>b4<span class="op">=</span>raster::raster(<span class="st">'/content/drive/MyDrive/Data/Bangladesh/LC09_L2SP_138043_20221216_20221223_02_T1/LC09_L2SP_138043_20221216_20221223_02_T1_SR_B4.TIF'</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read band 5 (NIR band)</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>b5<span class="op">=</span>raster::raster(<span class="st">'/content/drive/MyDrive/Data/Bangladesh/LC09_L2SP_138043_20221216_20221223_02_T1/LC09_L2SP_138043_20221216_20221223_02_T1_SR_B5.TIF'</span>)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Now, you can use <strong>stack()</strong> or <strong>brick()</strong> function to create multi-band raster stack</p>
+<div class="cell" data-outputid="46cad0c2-a4f4-41f5-ac3c-cc6b292cc5f0">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>multi_band<span class="op">&lt;-</span>stack(b2,b3,b4,b5)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>plot(multi_band)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-29-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>.libPaths(<span class="st">'drive/My Drive/R'</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>library(RStoolbox)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-outputid="11a6d175-f8bc-4c88-dc1f-e4f34bf94ada">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>p1<span class="op">&lt;-</span>ggRGB(multi_band, r<span class="op">=</span><span class="dv">4</span>, g<span class="op">=</span><span class="dv">3</span>, b<span class="op">=</span><span class="dv">2</span>, stretch <span class="op">=</span> <span class="st">"lin"</span>)<span class="op">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  theme(axis.title.x<span class="op">=</span>element_blank(),</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>        axis.text.x<span class="op">=</span>element_blank(),</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>        axis.ticks.x<span class="op">=</span>element_blank(),</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>        axis.title.y<span class="op">=</span>element_blank(),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>        axis.text.y<span class="op">=</span>element_blank(),</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>        axis.ticks.y<span class="op">=</span>element_blank())<span class="op">+</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  ggtitle(<span class="st">"False Color</span><span class="ch">\n</span><span class="st"> (R= Red, G= Green, B= Blue)"</span>)</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>p1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="geojson-data" class="level2">
+<h2 class="anchored" data-anchor-id="geojson-data">GeoJson data</h2>
+<p>GeoJSON is a format for encoding geographic data structures using JavaScript Object Notation (JSON). It is commonly used for representing geographical features and their attributes such as points, lines, polygons, and more. GeoJSON is widely used in web mapping applications and geographic information systems (GIS) due to its simplicity, easy integration with web technologies, and human-readability.</p>
+<p>Here’s an example of a simple GeoJSON representation for a point feature:</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"type"</span>: <span class="st">"Feature"</span>,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"geometry"</span>: {</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"type"</span>: <span class="st">"Point"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"coordinates"</span>: [longitude, latitude]</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"properties"</span>: {</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span>: <span class="st">"Sample Point"</span>,</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"description"</span>: <span class="st">"This is an example of a GeoJSON point feature."</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Here’s an explanation of the key components:</p>
+<ul>
+<li><p><strong><code>type</code></strong>: Specifies the type of the GeoJSON object. It can be “Feature,” “FeatureCollection,” “Point,” “LineString,” “Polygon,” and others.</p></li>
+<li><p><strong><code>geometry</code></strong>: Contains the geometric data for the feature, such as the coordinates for a point, the array of coordinates for a line or polygon, etc.</p></li>
+<li><p><strong><code>coordinates</code></strong>: The array of coordinates in the format <strong><code>[longitude, latitude]</code></strong> for points and <strong><code>[ [lon1, lat1], [lon2, lat2], ..., [lonN, latN] ]</code></strong> for lines and polygons.</p></li>
+<li><p><strong><code>properties</code></strong>: An object that holds additional properties or attributes associated with the feature.</p></li>
+</ul>
+<p>We use <strong>st_read()</strong> from sf package read raj_district_GCS.geojson from github using “vsicurl”</p>
+<div class="cell" data-outputid="03ca39c3-e2a6-4a91-aa5b-2beb146c75f3">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from my github</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>raj.st <span class="op">=</span> sf::st_read(<span class="st">"/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_district_GCS.geojson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `raj_district_GCS' from data source 
+  `/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_district_GCS.geojson' 
+  using driver `GeoJSON'
+Simple feature collection with 8 features and 14 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 88.00863 ymin: 23.80807 xmax: 89.82498 ymax: 25.27759
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="8d999005-f4f1-4d01-dafc-ac9bbc9e3ea4">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plot(raj.st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We also use <strong>geojsonsf</strong> to read and write GeoJSON data in R.</p>
+<div class="cell" data-outputid="636eef59-ac92-4e7b-c577-b4027a3965c7">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>library(geojsonsf)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>raj.geo <span class="op">=</span> geojson_sf(<span class="st">"https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_district_GCS.geojson"</span>)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>raj.geo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 8 features and 14 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 88.00863 ymin: 23.80807 xmax: 89.82498 ymax: 25.27759
+Geodetic CRS:  WGS 84
+  ADM0_PCODE    ADM0_EN ADM2ALT2EN ADM2_REF ADM1_PCODE  ADM1_EN   ADM2_EN
+1         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi     Bogra
+2         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi Joypurhat
+3         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi   Naogaon
+4         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi    Natore
+5         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi Nawabganj
+6         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi     Pabna
+7         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi  Rajshahi
+8         BD Bangladesh       &lt;NA&gt;     &lt;NA&gt;       BD50 Rajshahi Sirajganj
+  ADM2ALT1EN ADM2_PCODE    validOn       date Shape_Area
+1       &lt;NA&gt;     BD5010 2020-11-13 2015-01-01 0.26009774
+2       &lt;NA&gt;     BD5038 2020-11-13 2015-01-01 0.08593419
+3       &lt;NA&gt;     BD5064 2020-11-13 2015-01-01 0.30772759
+4       &lt;NA&gt;     BD5069 2020-11-13 2015-01-01 0.16947264
+5       &lt;NA&gt;     BD5070 2020-11-13 2015-01-01 0.15038568
+6       &lt;NA&gt;     BD5076 2020-11-13 2015-01-01 0.21210274
+7       &lt;NA&gt;     BD5081 2020-11-13 2015-01-01 0.21714336
+8       &lt;NA&gt;     BD5088 2020-11-13 2015-01-01 0.22199195
+                        geometry Shape_Leng ValidTo
+1 MULTIPOLYGON (((89.71534 24...   4.289236    &lt;NA&gt;
+2 MULTIPOLYGON (((89.28009 25...   2.214957    &lt;NA&gt;
+3 MULTIPOLYGON (((88.92302 25...   5.098052    &lt;NA&gt;
+4 MULTIPOLYGON (((89.33903 24...   3.458987    &lt;NA&gt;
+5 MULTIPOLYGON (((88.50557 24...   3.329448    &lt;NA&gt;
+6 MULTIPOLYGON (((89.72158 24...   3.078707    &lt;NA&gt;
+7 MULTIPOLYGON (((88.50557 24...   3.499923    &lt;NA&gt;
+8 MULTIPOLYGON (((89.71534 24...   3.596003    &lt;NA&gt;</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="d9b1f11b-ab6d-4628-a0e0-7a3b4bd4c045">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>library(ggplot2)</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>ggplot(raj.geo) <span class="op">+</span> geom_sf(aes(fill <span class="op">=</span> ADM2_EN)) <span class="op">+</span> guides(fill <span class="op">=</span> guide_none())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We can write sf object to GeoJSON file</p>
+<div class="cell" data-outputid="58ec1abd-757b-43ba-a944-43427f231f0c">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>bd.poly <span class="op">=</span> st_read(<span class="st">"/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/bd_district.shp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `bd_district' from data source 
+  `/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/bd_district.shp' 
+  using driver `ESRI Shapefile'
+Simple feature collection with 64 features and 14 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 88.00863 ymin: 20.59061 xmax: 92.68031 ymax: 26.63451
+CRS:           NA</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="5dfffbef-068c-463e-f20a-482f7a3cc4ce">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Write</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>sf::st_write(bd.poly, dsn <span class="op">=</span> <span class="st">"G:</span><span class="ch">\\</span><span class="st">My Drive</span><span class="ch">\\</span><span class="st">Data</span><span class="ch">\\</span><span class="st">Bangladesh</span><span class="ch">\\</span><span class="st">bd_district_GCS.geojson"</span>, layer <span class="op">=</span> <span class="st">"bd_district_GCS.geojson"</span>,append<span class="op">=</span>FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:rpy2.rinterface_lib.callbacks:R[write to console]: writing: substituting ENGCRS["Undefined Cartesian SRS with unknown unit"] for missing CRS
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Writing layer `bd_district_GCS.geojson' to data source 
+  `G:\My Drive\Data\Bangladesh\bd_district_GCS.geojson' using driver `GeoJSON'
+Writing 64 features with 14 fields and geometry type Multi Polygon.</code></pre>
+</div>
+</div>
+</section>
+<section id="kml" class="level2">
+<h2 class="anchored" data-anchor-id="kml">KML</h2>
+<p>Keyhole Markup Language (KML) is an XML-based file format used to represent geographic data and features in 3D Earth browsers, such as Google Earth, Google Maps, and other mapping applications. KML was developed by Keyhole, Inc., which was acquired by Google in 2004, and it became an open standard in 2008.</p>
+<p>KML files are structured as XML documents and are used to describe and display various types of geographical data, including points, lines, polygons, images, and overlays. KML allows you to define the geometry, attributes, and styles of these features. It is particularly useful for creating custom geographic content that can be displayed on digital maps and shared easily.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>?xml version<span class="op">=</span><span class="st">"1.0"</span> encoding<span class="op">=</span><span class="st">"UTF-8"</span>?<span class="op">&gt;</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>kml xmlns<span class="op">=</span><span class="st">"http://www.opengis.net/kml/2.2"</span><span class="op">&gt;</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;</span>Placemark<span class="op">&gt;</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>name<span class="op">&gt;</span>Sample Point<span class="op">&lt;/</span>name<span class="op">&gt;</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>description<span class="op">&gt;</span>This <span class="kw">is</span> an example of a KML point feature.<span class="op">&lt;/</span>description<span class="op">&gt;</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;</span>Point<span class="op">&gt;</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">&lt;</span>coordinates<span class="op">&gt;-</span><span class="fl">122.4194</span>,<span class="fl">37.7749</span>,<span class="dv">0</span><span class="op">&lt;/</span>coordinates<span class="op">&gt;</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">&lt;/</span>Point<span class="op">&gt;</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="op">&lt;/</span>Placemark<span class="op">&gt;</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;/</span>kml<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>You can use the sf package, which provides functions for reading and writing KML files</p>
+<div class="cell" data-outputid="70555826-2f05-4ec3-92c9-db7d680df3cd">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>poly.kml <span class="op">=</span> st_read(<span class="st">"/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_district_GCS.kml"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `raj_district_GCS' from data source 
+  `/vsicurl/https://github.com//zia207/r-colab/raw/main/Data/Bangladesh//Shapefiles/raj_district_GCS.kml' 
+  using driver `LIBKML'
+Simple feature collection with 8 features and 25 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 88.00863 ymin: 23.80807 xmax: 89.82498 ymax: 25.27759
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="410a32af-6ce1-4e47-9f03-771d1f8fb2ec">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="op">%%</span>R</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>plot(poly.kml$geometry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="python_read_write_spatial_data_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="further-reading" class="level3">
+<h3 class="anchored" data-anchor-id="further-reading">Further Reading</h3>
+<ol type="1">
+<li><p><a href="https://ucd-cws.github.io/CABW2020_R_training/m2_3_using_sf.html">Geospatial R: using {sf}</a></p></li>
+<li><p><a href="r-spatial.org">R-spatial</a></p></li>
+<li><p><a href="rspatial.org/#">Spatial Data Science with R and “terra”</a></p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ © CC-By Md.Shiful Islam, Senior Scientific Officer, Soil Resource Development Institute, Bangladesh 2023<br> R Script Credit: Zia Ahmed, Unversity at Buffalo
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

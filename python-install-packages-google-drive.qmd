@@ -1,0 +1,8 @@
+---
+title: "Install Packages in Google Drive"
+format: html
+notebook-view: false
+notebook-links: false
+---
+
+{{< embed python_install_packages_google_drive.ipynb echo=true error=true >}}

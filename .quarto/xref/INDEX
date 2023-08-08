@@ -29,5 +29,14 @@
   },
   "python-data-import-export.qmd": {
     "python-data-import-export.html": "7c4b8cab"
+  },
+  "python-install-packages-google-drive.qmd": {
+    "python-install-packages-google-drive.html": "a0bacaac"
+  },
+  "python_install_packages_google_drive.ipynb": {
+    "python_install_packages_google_drive.html": "02b34d82"
+  },
+  "python_read_write_spatial_data.ipynb": {
+    "python_read_write_spatial_data.html": "0b4a048b"
   }
 }

@@ -10,20 +10,23 @@ website:
         text: Home
       - about.qmd
   sidebar:
-    style: docked
+    style: floating
     search: true
     background: "#D4E9E0"
     collapse-level: 1
     contents:
         - section: "<b>MENU</b>"
-          contents: 
         - section: "R in RStudio"
+        
         - section: "R in Colab"
           contents:
             - text: "ggplot2"
               href: R_Titanic_Data_ggplot2.html
+              
         - section: "Python in Colab"
           contents:
+            - text: Install Packages in Google Drive
+              href: python-install-packages-google-drive.qmd
             - text: "Data Import-Export"
               href: python-data-import-export.qmd
           
@@ -37,9 +40,9 @@ format:
     toc: true
     code-fold: true
     highlight-style: atom-one
-    code-block-bg: "#DBDBDB"
+    code-block-bg: "#D4E9E0"
     code-block-border-left: "#5A5A5A"
-    backgroundcolor: "#F4E0DF"
+    backgroundcolor: "#F6EFE9"
 
 editor: visual
 
