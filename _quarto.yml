@@ -16,7 +16,6 @@ website:
     collapse-level: 1
     contents:
         - section: "<b>MENU</b>"
-        - section: "R in RStudio"
         
         - section: "R in Colab"
           contents:
